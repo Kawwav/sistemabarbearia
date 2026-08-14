@@ -17,17 +17,16 @@ function Comeco({ onFinish, duracao = 2200 }) {
   const navigate = useNavigate()
   const { estaLogado } = useAuth()
   const lenis = useLenis()
-
-  // se já estiver logado, vai direto pro agendamento; senão, pede login primeiro
   function irParaAgendamento(e) {
     e.preventDefault()
     navigate(estaLogado ? '/agendar' : '/login')
   }
 
-  // desce suavemente até a seção de serviços ao clicar em "Descubra mais".
-  // usa o Lenis (em vez do salto padrão do navegador) porque ele é quem
-  // está controlando o scroll suave do site inteiro, e a seção do vídeo
-  // fica "pinada" pelo ScrollTrigger, que o Lenis já mantém sincronizado
+  function irParaAdmin(e) {
+    e.preventDefault()
+    navigate('/admin/login')
+  }
+
   function descobrirMais(e) {
     e.preventDefault()
 
@@ -152,7 +151,7 @@ function Comeco({ onFinish, duracao = 2200 }) {
         <a href="/agendar" className="comeco-agendar" onClick={irParaAgendamento}>
           Agendar
         </a>
-        <a href="/admin/login" className="comeco-adm">
+        <a href="/admin/login" className="comeco-adm" onClick={irParaAdmin}>
           Adm
         </a>
       </div>
