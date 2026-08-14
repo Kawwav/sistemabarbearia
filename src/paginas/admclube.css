@@ -1,0 +1,269 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap');
+
+.admclube {
+  min-height: 100vh;
+  background: #111;
+  color: #fff;
+  font-family: 'Instrument Sans', Arial, sans-serif;
+  padding: 48px 24px 100px;
+}
+
+.admclube-cabecalho {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: 900px;
+  margin: 0 auto 32px;
+}
+
+.admclube-voltar {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: #9a9a9a;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 18px;
+  transition: color 0.2s ease;
+}
+
+.admclube-voltar:hover {
+  color: #fff;
+}
+
+.admclube-etiqueta {
+  margin: 0 0 6px;
+  color: #8a8a8a;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.admclube-titulo {
+  margin: 0;
+  font-size: clamp(24px, 4vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.admclube-cabecalho-direita {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.admclube-email {
+  font-size: 13px;
+  color: #9a9a9a;
+}
+
+.admclube-sair {
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: transparent;
+  color: #ccc;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.admclube-sair:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+/* cartões de resumo: total de assinantes + receita recorrente */
+.admclube-resumo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  max-width: 900px;
+  margin: 0 auto 32px;
+}
+
+.admclube-resumo-cartao {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 24px 26px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.admclube-resumo-etiqueta {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #9a9a9a;
+}
+
+.admclube-resumo-valor {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.admclube-resumo-periodo {
+  margin-left: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #9a9a9a;
+}
+
+/* cartão de receita recorrente em destaque, fundo claro */
+.admclube-resumo-destaque {
+  background: #fff;
+  border-color: transparent;
+  color: #16171d;
+}
+
+.admclube-resumo-destaque .admclube-resumo-etiqueta {
+  color: #5a5a5a;
+}
+
+.admclube-resumo-destaque .admclube-resumo-periodo {
+  color: #5a5a5a;
+}
+
+.admclube-vazio {
+  max-width: 900px;
+  margin: 40px auto 0;
+  text-align: center;
+  color: #8a8a8a;
+  font-size: 14px;
+}
+
+.admclube-planos {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.admclube-plano-cartao {
+  padding: 24px 26px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.admclube-plano-cabecalho {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.admclube-plano-nome {
+  margin: 0 0 4px;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.admclube-plano-preco {
+  font-size: 12px;
+  color: #9a9a9a;
+}
+
+.admclube-plano-numeros {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.admclube-plano-contagem {
+  font-size: 13px;
+  color: #cfcfcf;
+}
+
+.admclube-plano-receita {
+  font-size: 16px;
+  font-weight: 700;
+  color: #9ae6a3;
+}
+
+.admclube-plano-vazio {
+  margin: 18px 0 0;
+  font-size: 13px;
+  color: #6a6a6a;
+}
+
+.admclube-assinantes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.admclube-assinante-linha {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.admclube-assinante-info {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 0;
+  flex-wrap: wrap;
+}
+
+.admclube-assinante-nome {
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.admclube-assinante-email {
+  font-size: 12px;
+  color: #8a8a8a;
+}
+
+.admclube-assinante-desde {
+  flex-shrink: 0;
+  font-size: 12px;
+  color: #8a8a8a;
+}
+
+@media (max-width: 640px) {
+  .admclube-cabecalho {
+    flex-direction: column;
+  }
+
+  .admclube-plano-cabecalho {
+    flex-direction: column;
+  }
+
+  .admclube-plano-numeros {
+    align-items: flex-start;
+  }
+
+  .admclube-assinante-linha {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}

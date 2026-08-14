@@ -1,0 +1,450 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap');
+
+.admbarbeiros {
+  min-height: 100vh;
+  background: #111;
+  color: #fff;
+  font-family: 'Instrument Sans', Arial, sans-serif;
+  padding: 48px 24px 100px;
+}
+
+.admbarbeiros-cabecalho {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: 760px;
+  margin: 0 auto 32px;
+}
+
+.admbarbeiros-voltar {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: #9a9a9a;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 18px;
+  transition: color 0.2s ease;
+}
+
+.admbarbeiros-voltar:hover {
+  color: #fff;
+}
+
+.admbarbeiros-etiqueta {
+  margin: 0 0 6px;
+  color: #8a8a8a;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.admbarbeiros-titulo {
+  margin: 0;
+  font-size: clamp(24px, 4vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.admbarbeiros-cabecalho-direita {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.admbarbeiros-email {
+  font-size: 13px;
+  color: #9a9a9a;
+}
+
+.admbarbeiros-sair {
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: transparent;
+  color: #ccc;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.admbarbeiros-sair:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.admbarbeiros-barra {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: 760px;
+  margin: 0 auto 28px;
+  flex-wrap: wrap;
+}
+
+.admbarbeiros-contagem {
+  font-size: 13px;
+  color: #8a8a8a;
+}
+
+.admbarbeiros-novo-abrir {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 10px;
+  background: #fff;
+  color: #16171d;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.admbarbeiros-novo-abrir:hover {
+  background: #e9e9e9;
+  transform: translateY(-1px);
+}
+
+.admbarbeiros-vazio {
+  max-width: 760px;
+  margin: 40px auto 0;
+  text-align: center;
+  color: #8a8a8a;
+  font-size: 14px;
+}
+
+.admbarbeiros-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.admbarbeiros-cartao {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.admbarbeiros-cartao-topo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+
+.admbarbeiros-avatar {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.admbarbeiros-avatar-vazio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: #ccc;
+}
+
+.admbarbeiros-avatar-grande {
+  width: 76px;
+  height: 76px;
+  font-size: 24px;
+}
+
+.admbarbeiros-info {
+  min-width: 0;
+}
+
+.admbarbeiros-nome {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.admbarbeiros-horario-resumo {
+  margin: 0;
+  font-size: 12px;
+  color: #9a9a9a;
+}
+
+.admbarbeiros-acoes {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.admbarbeiros-acao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: transparent;
+  color: #ccc;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.admbarbeiros-acao:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.admbarbeiros-acao-remover:hover {
+  border-color: rgba(255, 138, 138, 0.4);
+  color: #ff8a8a;
+  background: rgba(255, 138, 138, 0.12);
+}
+
+/* cartão de formulário: novo barbeiro ou edição inline */
+.admbarbeiros-cartao-form {
+  flex-direction: column;
+  align-items: stretch;
+  padding: 28px;
+}
+
+.admbarbeiros-form-titulo {
+  margin: 0 0 20px;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.admbarbeiros-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.admbarbeiros-form-foto {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.admbarbeiros-foto-upload {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: transparent;
+  color: #ccc;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.admbarbeiros-foto-upload:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.admbarbeiros-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #cfcfcf;
+}
+
+.admbarbeiros-campo input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.25s ease;
+}
+
+.admbarbeiros-campo input::placeholder {
+  color: #6a6a6a;
+}
+
+.admbarbeiros-campo input:focus {
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.admbarbeiros-dias {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.admbarbeiros-dias-titulo {
+  font-size: 13px;
+  font-weight: 600;
+  color: #cfcfcf;
+}
+
+.admbarbeiros-dia-linha {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.02);
+  transition: opacity 0.2s ease;
+}
+
+.admbarbeiros-dia-linha-inativa {
+  opacity: 0.5;
+}
+
+.admbarbeiros-dia-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 118px;
+  flex-shrink: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+}
+
+.admbarbeiros-dia-toggle input {
+  width: 16px;
+  height: 16px;
+  accent-color: #fff;
+  cursor: pointer;
+}
+
+.admbarbeiros-dia-linha input[type='time'] {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  font-family: inherit;
+  font-size: 13px;
+  outline: none;
+  color-scheme: dark;
+  transition: border-color 0.25s ease;
+}
+
+.admbarbeiros-dia-linha input[type='time']:focus {
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.admbarbeiros-dia-linha input[type='time']:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.admbarbeiros-dia-ate {
+  font-size: 12px;
+  color: #8a8a8a;
+  flex-shrink: 0;
+}
+
+.admbarbeiros-form-acoes {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 4px;
+}
+
+.admbarbeiros-salvar {
+  padding: 13px 26px;
+  border: none;
+  border-radius: 10px;
+  background: #fff;
+  color: #16171d;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease, opacity 0.25s ease;
+}
+
+.admbarbeiros-salvar:hover {
+  background: #e9e9e9;
+  transform: translateY(-1px);
+}
+
+.admbarbeiros-salvar:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.admbarbeiros-cancelar {
+  padding: 13px 22px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: transparent;
+  color: #ccc;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.admbarbeiros-cancelar:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+@media (max-width: 640px) {
+  .admbarbeiros-cabecalho {
+    flex-direction: column;
+  }
+
+  .admbarbeiros-cartao {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .admbarbeiros-acoes {
+    justify-content: flex-end;
+  }
+
+  .admbarbeiros-dia-linha {
+    flex-wrap: wrap;
+  }
+
+  .admbarbeiros-form-foto {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

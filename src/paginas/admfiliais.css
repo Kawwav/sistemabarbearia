@@ -1,0 +1,314 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap');
+
+.admfiliais {
+  min-height: 100vh;
+  background: #111;
+  color: #fff;
+  font-family: 'Instrument Sans', Arial, sans-serif;
+  padding: 48px 24px 100px;
+}
+
+.admfiliais-cabecalho {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: 760px;
+  margin: 0 auto 32px;
+}
+
+.admfiliais-voltar {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: #9a9a9a;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 18px;
+  transition: color 0.2s ease;
+}
+
+.admfiliais-voltar:hover {
+  color: #fff;
+}
+
+.admfiliais-etiqueta {
+  margin: 0 0 6px;
+  color: #8a8a8a;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.admfiliais-titulo {
+  margin: 0;
+  font-size: clamp(24px, 4vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.admfiliais-cabecalho-direita {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.admfiliais-email {
+  font-size: 13px;
+  color: #9a9a9a;
+}
+
+.admfiliais-sair {
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: transparent;
+  color: #ccc;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.admfiliais-sair:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.admfiliais-barra {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: 760px;
+  margin: 0 auto 28px;
+  flex-wrap: wrap;
+}
+
+.admfiliais-contagem {
+  font-size: 13px;
+  color: #8a8a8a;
+}
+
+.admfiliais-novo-abrir {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 10px;
+  background: #fff;
+  color: #16171d;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.admfiliais-novo-abrir:hover {
+  background: #e9e9e9;
+  transform: translateY(-1px);
+}
+
+.admfiliais-vazio {
+  max-width: 760px;
+  margin: 40px auto 0;
+  text-align: center;
+  color: #8a8a8a;
+  font-size: 14px;
+}
+
+.admfiliais-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.admfiliais-cartao {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.admfiliais-info {
+  min-width: 0;
+}
+
+.admfiliais-nome {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.admfiliais-detalhe {
+  margin: 0;
+  font-size: 12px;
+  color: #9a9a9a;
+}
+
+.admfiliais-acoes {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.admfiliais-acao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: transparent;
+  color: #ccc;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.admfiliais-acao:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.admfiliais-acao-remover:hover {
+  border-color: rgba(255, 138, 138, 0.4);
+  color: #ff8a8a;
+  background: rgba(255, 138, 138, 0.12);
+}
+
+/* cartão de formulário: nova filial ou edição inline */
+.admfiliais-cartao-form {
+  flex-direction: column;
+  align-items: stretch;
+  padding: 28px;
+}
+
+.admfiliais-form-titulo {
+  margin: 0 0 20px;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.admfiliais-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.admfiliais-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #cfcfcf;
+}
+
+.admfiliais-campo input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.25s ease;
+}
+
+.admfiliais-campo input::placeholder {
+  color: #6a6a6a;
+}
+
+.admfiliais-campo input:focus {
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.admfiliais-form-acoes {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 4px;
+}
+
+.admfiliais-salvar {
+  padding: 13px 26px;
+  border: none;
+  border-radius: 10px;
+  background: #fff;
+  color: #16171d;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease, opacity 0.25s ease;
+}
+
+.admfiliais-salvar:hover {
+  background: #e9e9e9;
+  transform: translateY(-1px);
+}
+
+.admfiliais-salvar:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.admfiliais-cancelar {
+  padding: 13px 22px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: transparent;
+  color: #ccc;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.admfiliais-cancelar:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+@media (max-width: 640px) {
+  .admfiliais-cabecalho {
+    flex-direction: column;
+  }
+
+  .admfiliais-cartao {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .admfiliais-acoes {
+    justify-content: flex-end;
+  }
+
+  .admfiliais-form-acoes {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap');
+
+.agendar {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 24px 100px;
+  background: #111;
+  font-family: 'Instrument Sans', Arial, sans-serif;
+  overflow: hidden;
+}
+
+/* mesma vinheta sutil das outras telas escuras */
+.agendar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.06), transparent 55%);
+  pointer-events: none;
+}
+
+.agendar-topo {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.agendar-saudacao {
+  margin: 0 0 10px;
+  color: #8a8a8a;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.agendar-nome {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.agendar-opcoes {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 980px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  align-items: stretch;
+}
+
+.agendar-cartao {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 28px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 32px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #fff;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.agendar-cartao:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+.agendar-cartao-texto {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.agendar-cartao-titulo {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+}
+
+.agendar-cartao-descricao {
+  margin: 0;
+  color: #9a9a9a;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.agendar-cartao-icone {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.agendar-cartao:hover .agendar-cartao-icone {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* segundo cartão em destaque, com fundo branco, chamando pra ação principal */
+.agendar-cartao-principal {
+  background: #fff;
+  border-color: transparent;
+  color: #16171d;
+}
+
+.agendar-cartao-principal:hover {
+  background: #e9e9e9;
+  border-color: transparent;
+}
+
+.agendar-cartao-principal .agendar-cartao-descricao {
+  color: #5a5a5a;
+}
+
+.agendar-cartao-principal .agendar-cartao-icone {
+  border-color: rgba(22, 23, 29, 0.25);
+  color: #16171d;
+}
+
+.agendar-cartao-principal:hover .agendar-cartao-icone {
+  background: rgba(22, 23, 29, 0.08);
+  border-color: rgba(22, 23, 29, 0.5);
+}
+
+@media (max-width: 520px) {
+  .agendar {
+    padding: 96px 20px 80px;
+  }
+
+  .agendar-opcoes {
+    grid-template-columns: 1fr;
+  }
+
+  .agendar-cartao {
+    padding: 28px;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .agendar-cartao-titulo {
+    font-size: 19px;
+  }
+
+  .agendar-cartao-descricao {
+    font-size: 13px;
+  }
+
+  .agendar-cartao-icone {
+    width: 36px;
+    height: 36px;
+  }
+}

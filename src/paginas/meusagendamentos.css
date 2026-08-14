@@ -1,0 +1,289 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap');
+
+.meusagendamentos {
+  position: relative;
+  min-height: 100vh;
+  background: #111;
+  color: #fff;
+  font-family: 'Instrument Sans', Arial, sans-serif;
+  padding: 100px 24px 100px;
+  overflow: hidden;
+}
+
+.meusagendamentos::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.06), transparent 55%);
+  pointer-events: none;
+}
+
+.meusagendamentos-conteudo {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.meusagendamentos-voltar {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: #9a9a9a;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 28px;
+  transition: color 0.2s ease;
+}
+
+.meusagendamentos-voltar:hover {
+  color: #fff;
+}
+
+.meusagendamentos-cabecalho {
+  margin-bottom: 36px;
+}
+
+.meusagendamentos-etiqueta {
+  margin: 0 0 8px;
+  color: #8a8a8a;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.meusagendamentos-titulo {
+  margin: 0;
+  font-size: clamp(26px, 4vw, 34px);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.meusagendamentos-vazio {
+  text-align: center;
+  padding: 64px 24px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.meusagendamentos-vazio-texto {
+  margin: 0 0 24px;
+  color: #9a9a9a;
+  font-size: 14px;
+}
+
+.meusagendamentos-vazio-botao {
+  padding: 13px 26px;
+  border: none;
+  border-radius: 10px;
+  background: #fff;
+  color: #16171d;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.meusagendamentos-vazio-botao:hover {
+  background: #e9e9e9;
+  transform: translateY(-1px);
+}
+
+.meusagendamentos-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.meusagendamentos-cartao {
+  display: flex;
+  gap: 20px;
+  padding: 24px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: border-color 0.25s ease;
+}
+
+.meusagendamentos-cartao:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.meusagendamentos-cartao-passado {
+  opacity: 0.55;
+}
+
+/* coluna esquerda: data em destaque */
+.meusagendamentos-data {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  padding: 12px 8px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.meusagendamentos-data-dia {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.meusagendamentos-data-mes {
+  margin-top: 4px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #9a9a9a;
+}
+
+.meusagendamentos-data-hora {
+  margin-top: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  width: 100%;
+  text-align: center;
+}
+
+/* coluna direita: detalhes */
+.meusagendamentos-detalhes {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+.meusagendamentos-cabecalho-linha {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.meusagendamentos-barbeiro {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.meusagendamentos-filial {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: #8a8a8a;
+}
+
+.meusagendamentos-status {
+  flex-shrink: 0;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.meusagendamentos-status-concluido {
+  background: rgba(255, 255, 255, 0.06);
+  color: #8a8a8a;
+}
+
+.meusagendamentos-servicos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.meusagendamentos-servico-chip {
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 12px;
+  color: #d8d8d8;
+}
+
+.meusagendamentos-rodape-linha {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.meusagendamentos-valor {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.meusagendamentos-obs {
+  margin: 0;
+  font-size: 12px;
+  color: #6a6a6a;
+  font-style: italic;
+}
+
+.meusagendamentos-cancelar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 138, 138, 0.3);
+  background: transparent;
+  color: #ff8a8a;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.meusagendamentos-cancelar:hover {
+  background: rgba(255, 138, 138, 0.12);
+}
+
+@media (max-width: 520px) {
+  .meusagendamentos {
+    padding: 84px 20px 80px;
+  }
+
+  .meusagendamentos-cartao {
+    padding: 18px;
+    gap: 14px;
+  }
+
+  .meusagendamentos-data {
+    width: 60px;
+    padding: 10px 6px;
+  }
+
+  .meusagendamentos-data-dia {
+    font-size: 20px;
+  }
+
+  .meusagendamentos-rodape-linha {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}

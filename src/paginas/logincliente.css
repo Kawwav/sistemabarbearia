@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap');
+
+.logincliente {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background: #111;
+  font-family: 'Instrument Sans', Arial, sans-serif;
+  overflow: hidden;
+}
+
+/* vinheta sutil só pra dar profundidade ao fundo escuro */
+.logincliente::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.06), transparent 55%);
+  pointer-events: none;
+}
+
+.logincliente-cartao {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 440px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 40px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* abas: entrar / criar conta */
+.logincliente-abas {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  margin-bottom: 32px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+}
+
+.logincliente-aba {
+  flex: 1;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 9px;
+  background: transparent;
+  color: #9a9a9a;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.logincliente-aba-ativa {
+  background: #fff;
+  color: #16171d;
+}
+
+.logincliente-formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.logincliente-titulo {
+  margin: 0;
+  color: #fff;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.logincliente-subtitulo {
+  margin: -12px 0 4px;
+  color: #8a8a8a;
+  font-size: 14px;
+}
+
+.logincliente-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13px;
+  color: #ccc;
+}
+
+.logincliente-campo input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  font-family: inherit;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+
+.logincliente-campo input::placeholder {
+  color: #6a6a6a;
+}
+
+.logincliente-campo input:focus {
+  border-color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* deixa o ícone do seletor de data legível no fundo escuro */
+.logincliente-campo input[type='date'] {
+  color-scheme: dark;
+}
+
+.logincliente-linha {
+  display: flex;
+  gap: 14px;
+}
+
+.logincliente-linha .logincliente-campo {
+  flex: 1;
+  min-width: 0;
+}
+
+.logincliente-campo-senha {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.logincliente-campo-senha input {
+  padding-right: 42px;
+}
+
+.logincliente-alternar-senha {
+  position: absolute;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  color: #9a9a9a;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: color 0.2s ease;
+}
+
+.logincliente-alternar-senha:hover {
+  color: #fff;
+}
+
+.logincliente-erro {
+  color: #ff8a8a;
+  font-size: 12px;
+}
+
+.logincliente-mensagem {
+  margin: 0;
+  text-align: center;
+  font-size: 13px;
+  color: #9be29b;
+}
+
+.logincliente-botao {
+  margin-top: 4px;
+  padding: 13px;
+  border: none;
+  border-radius: 10px;
+  background: #fff;
+  color: #16171d;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease, opacity 0.25s ease;
+}
+
+.logincliente-botao:hover {
+  background: #e9e9e9;
+  transform: translateY(-1px);
+}
+
+.logincliente-botao:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.logincliente-divisor {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 4px 0;
+  color: #6a6a6a;
+  font-size: 12px;
+}
+
+.logincliente-divisor::before,
+.logincliente-divisor::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.logincliente-google {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: #fff;
+  color: #16171d;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.logincliente-google:hover {
+  background: #f1f1f1;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 520px) {
+  .logincliente-cartao {
+    padding: 28px 22px;
+    border-radius: 18px;
+  }
+
+  .logincliente-linha {
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .logincliente-titulo {
+    font-size: 22px;
+  }
+}

@@ -1,0 +1,315 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&display=swap');
+
+.clube {
+  position: relative;
+  min-height: 100vh;
+  background: #111;
+  color: #fff;
+  font-family: 'Instrument Sans', Arial, sans-serif;
+  padding: 100px 24px 100px;
+  overflow: hidden;
+}
+
+.clube::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.06), transparent 55%);
+  pointer-events: none;
+}
+
+.clube-conteudo {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.clube-voltar {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  color: #9a9a9a;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 28px;
+  transition: color 0.2s ease;
+}
+
+.clube-voltar:hover {
+  color: #fff;
+}
+
+.clube-cabecalho {
+  text-align: center;
+  max-width: 560px;
+  margin: 0 auto 56px;
+}
+
+.clube-etiqueta {
+  margin: 0 0 8px;
+  color: #8a8a8a;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.clube-titulo {
+  margin: 0 0 12px;
+  font-size: clamp(28px, 4vw, 38px);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.clube-subtitulo {
+  margin: 0;
+  color: #9a9a9a;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.clube-planos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 24px;
+  align-items: stretch;
+}
+
+.clube-plano {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 36px 30px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.clube-plano:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-3px);
+}
+
+.clube-plano-etiqueta-popular {
+  position: absolute;
+  top: -13px;
+  left: 30px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: #fff;
+  color: #16171d;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.clube-plano-nome {
+  margin: 0 0 6px;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.clube-plano-descricao {
+  margin: 0 0 24px;
+  color: #9a9a9a;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.clube-plano-preco {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 26px;
+}
+
+.clube-plano-preco-valor {
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+.clube-plano-preco-periodo {
+  color: #9a9a9a;
+  font-size: 13px;
+}
+
+.clube-plano-direitos {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0 0 28px;
+  padding: 0;
+  list-style: none;
+  flex: 1;
+}
+
+.clube-plano-direito {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  color: #d8d8d8;
+  line-height: 1.4;
+}
+
+.clube-plano-direito-icone {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.clube-plano-botao {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+  background: transparent;
+  color: #fff;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+.clube-plano-botao:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-1px);
+}
+
+/* plano em destaque: cartão claro pra chamar atenção */
+.clube-plano-destaque {
+  background: #fff;
+  border-color: transparent;
+  color: #16171d;
+}
+
+.clube-plano-destaque:hover {
+  border-color: transparent;
+}
+
+.clube-plano-destaque .clube-plano-descricao {
+  color: #5a5a5a;
+}
+
+.clube-plano-destaque .clube-plano-preco-periodo {
+  color: #5a5a5a;
+}
+
+.clube-plano-destaque .clube-plano-direito {
+  color: #2a2a2a;
+}
+
+.clube-plano-destaque .clube-plano-direito-icone {
+  background: rgba(22, 23, 29, 0.1);
+  color: #16171d;
+}
+
+.clube-plano-destaque .clube-plano-botao {
+  background: #16171d;
+  border-color: #16171d;
+  color: #fff;
+}
+
+.clube-plano-destaque .clube-plano-botao:hover {
+  background: #2b2c33;
+}
+
+.clube-plano-ativo .clube-plano-botao {
+  background: #fff;
+  border-color: #fff;
+  color: #16171d;
+}
+
+.clube-plano-destaque.clube-plano-ativo .clube-plano-botao {
+  background: #16171d;
+  color: #fff;
+}
+
+/* tela de confirmação depois de escolher um plano */
+.clube-sucesso {
+  position: relative;
+  z-index: 1;
+  max-width: 440px;
+  margin: 60px auto 0;
+  text-align: center;
+  padding: 48px 36px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.clube-sucesso-icone {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #fff;
+  color: #16171d;
+}
+
+.clube-sucesso-titulo {
+  margin: 0 0 10px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.clube-sucesso-texto {
+  margin: 0 0 28px;
+  color: #9a9a9a;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.clube-sucesso-botao {
+  padding: 13px 26px;
+  border: none;
+  border-radius: 10px;
+  background: #fff;
+  color: #16171d;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.clube-sucesso-botao:hover {
+  background: #e9e9e9;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 560px) {
+  .clube {
+    padding: 84px 20px 80px;
+  }
+
+  .clube-plano {
+    padding: 30px 24px;
+  }
+}

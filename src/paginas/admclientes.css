@@ -1,0 +1,149 @@
+.cli-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.cli-cartao {
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+
+.cli-cartao-aberto {
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.cli-resumo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 16px 18px;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.cli-avatar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.cli-dados {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.cli-nome {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.cli-contato {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+}
+
+.cli-contato-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #9a9a9a;
+  white-space: nowrap;
+}
+
+.cli-sem-contato {
+  color: #6a6a6a;
+  font-style: italic;
+}
+
+.cli-metricas {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-shrink: 0;
+}
+
+.cli-metrica {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  min-width: 68px;
+}
+
+.cli-metrica-valor {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.cli-metrica-rotulo {
+  font-size: 11px;
+  color: #8a8a8a;
+  white-space: nowrap;
+}
+
+.cli-chevron {
+  flex-shrink: 0;
+  color: #8a8a8a;
+}
+
+.cli-chevron-aberto {
+  transform: rotate(180deg);
+}
+
+.cli-historico {
+  padding: 0 18px 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cli-historico-titulo {
+  margin: 16px 0 12px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #8a8a8a;
+}
+
+@media (max-width: 640px) {
+  .cli-resumo {
+    flex-wrap: wrap;
+  }
+
+  .cli-metricas {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 20px;
+    padding-left: 58px;
+  }
+
+  .cli-metrica {
+    align-items: flex-start;
+  }
+}

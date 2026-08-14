@@ -1,0 +1,94 @@
+.time {
+  position: relative;
+  min-height: 100vh;
+  background: #111;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 200px 24px;
+  font-family: 'Instrument Sans', Arial, sans-serif;
+}
+
+.time-retangulos {
+  display: flex;
+  flex-direction: column;
+  gap: 120px;
+  width: 100%;
+  max-width: 1500px;
+  margin-top: 50px;
+}
+
+.time-membro {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: fit-content;
+}
+
+.time-membro-esquerda {
+  align-self: flex-start;
+}
+
+.time-membro-direita {
+  align-self: flex-end;
+}
+
+.time-membro-direita .time-retangulo {
+  transition-delay: 0.25s;
+}
+
+.time-info-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.time-cargo {
+  color: #b3b3b3;
+  font-size: 14px;
+}
+
+.time-retangulo {
+  width: 480px;
+  height: 610px;
+  object-fit: cover;
+  border-radius: 8px;
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 1.1s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.time-retangulo.time-revelado {
+  clip-path: inset(0 0 0 0);
+}
+
+.time-nome {
+  font-size: 20px;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.time-titulo {
+  font-size: 32px;
+  margin: 0 0 12px;
+}
+
+.time-frase {
+  align-self: center;
+  max-width: 900px;
+  font-size: 56px;
+  line-height: 1.3;
+  margin: 0;
+  color: #fff;
+  opacity: 0;
+  filter: blur(16px);
+  transition: opacity 1.4s ease, filter 1.4s ease;
+}
+
+.time-frase.time-frase-revelada {
+  opacity: 1;
+  filter: blur(0);
+}
