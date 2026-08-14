@@ -82,7 +82,7 @@ function Comeco({ onFinish, duracao = 2200 }) {
         <video
           ref={videoRef}
           className="comeco-video"
-          src="/fundo.mp4"
+          src={`${import.meta.env.BASE_URL}fundo.mp4`}
           autoPlay
           muted
           loop

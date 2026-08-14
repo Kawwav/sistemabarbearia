@@ -2,13 +2,13 @@ import './salao.css'
 import { useEffect, useRef, useState } from 'react'
 
 function Salao() {
-  const imagens = [
-    '/salao1.jpg',
-    '/salao2.jpg',
-    '/salao3.jpg',
-    '/salao4.jpg',
-    '/salao5.jpg',
-  ]
+const imagens = [
+  `${import.meta.env.BASE_URL}salao1.jpg`,
+  `${import.meta.env.BASE_URL}salao2.jpg`,
+  `${import.meta.env.BASE_URL}salao3.jpg`,
+  `${import.meta.env.BASE_URL}salao4.jpg`,
+  `${import.meta.env.BASE_URL}salao5.jpg`,
+]
 
   const trilhaRef = useRef(null)
   const posicaoRef = useRef(0)

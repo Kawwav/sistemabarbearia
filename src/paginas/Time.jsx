@@ -32,11 +32,11 @@ function MembroTime({ nome, lado }) {
 
   return (
     <div ref={ref} className={`time-membro time-membro-${lado}`}>
-      <img
-        src="/barbeiro1.jpg"
-        alt="Barbeiro cortando cabelo de cliente"
-        className={`time-retangulo ${visivel ? 'time-revelado' : ''}`}
-      />
+<img
+  src={`${import.meta.env.BASE_URL}barbeiro1.jpg`}
+  alt="Barbeiro cortando cabelo de cliente"
+  className={`time-retangulo ${visivel ? 'time-revelado' : ''}`}
+/>
       <div className="time-info-row">
         <h3 className="time-nome">{nome}</h3>
         <span className="time-cargo">Barbeiro</span>
