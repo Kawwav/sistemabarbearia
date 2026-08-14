@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { useGLTF, Environment } from '@react-three/drei'
 import { useAuth } from '../contexto/AuthContext'
-const modeloTesoura = '/barbers_scissors.glb'
+const modeloTesoura = `${import.meta.env.BASE_URL}barbers_scissors.glb`
 
 // frase que corre da direita para a esquerda no topo do footer
 const FRASE_MARQUEE = '"o bom trabalho se faz como as formigas fazem as coisas: pouco a pouco" — Lafcadio Hearn'

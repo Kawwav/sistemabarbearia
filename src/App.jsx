@@ -19,7 +19,14 @@ import AdminClientes from './paginas/admclientes'
 import { useAuth } from './contexto/AuthContext'
 import { useAdminAuth } from './contexto/AdminAuthContext'
 
-// página inicial: as seções de sempre, uma embaixo da outra
+//git add .
+//git commit -m ""
+//git branch -M main
+//git push -u origin main
+
+
+
+
 function Inicio() {
   return (
     <>

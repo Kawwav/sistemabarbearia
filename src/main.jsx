@@ -8,7 +8,7 @@ import { AdminAuthProvider } from './contexto/AdminAuthContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/sistemabarbearia">
       <AuthProvider>
         <AdminAuthProvider>
           <App />
