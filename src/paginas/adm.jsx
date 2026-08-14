@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAdminAuth } from '../contexto/AdminAuthContext'
 import './adm.css'
@@ -384,6 +384,7 @@ function Admin() {
   const [notificacoes, setNotificacoes] = useState([])
   const [mostrarNotificacoes, setMostrarNotificacoes] = useState(false)
   const [toasts, setToasts] = useState([])
+  const notificacoesRef = useRef(null)
 
   // mantém o localStorage em dia sempre que a lista muda (ex.: após alterar status)
   useEffect(() => {
@@ -500,6 +501,29 @@ function Admin() {
     sairAdmin()
     navigate('/admin/login')
   }
+
+  // fecha o painel de notificações quando o clique acontece fora dele (ou com a tecla Esc)
+  useEffect(() => {
+    if (!mostrarNotificacoes) return
+
+    function aoClicarFora(evento) {
+      if (notificacoesRef.current && !notificacoesRef.current.contains(evento.target)) {
+        setMostrarNotificacoes(false)
+      }
+    }
+
+    function aoPressionarTecla(evento) {
+      if (evento.key === 'Escape') setMostrarNotificacoes(false)
+    }
+
+    document.addEventListener('mousedown', aoClicarFora)
+    document.addEventListener('keydown', aoPressionarTecla)
+
+    return () => {
+      document.removeEventListener('mousedown', aoClicarFora)
+      document.removeEventListener('keydown', aoPressionarTecla)
+    }
+  }, [mostrarNotificacoes])
 
   function alternarNotificacoes() {
     setMostrarNotificacoes((atual) => {
@@ -711,7 +735,7 @@ function Admin() {
           <h1 className="adm-titulo">Agendamentos</h1>
         </div>
         <div className="adm-cabecalho-direita">
-          <div className="adm-sino-wrap">
+          <div className="adm-sino-wrap" ref={notificacoesRef}>
             <button
               type="button"
               className="adm-sino"
@@ -729,11 +753,22 @@ function Admin() {
               <div className="adm-notificacoes-painel">
                 <div className="adm-notificacoes-cabecalho">
                   <span>Notificações</span>
-                  {notificacoes.length > 0 && (
-                    <button type="button" className="adm-notificacoes-limpar" onClick={limparNotificacoes}>
-                      Limpar
+                  <div className="adm-notificacoes-cabecalho-acoes">
+                    {notificacoes.length > 0 && (
+                      <button type="button" className="adm-notificacoes-limpar" onClick={limparNotificacoes}>
+                        Limpar
+                      </button>
+                    )}
+                    <button
+                      type="button"
+                      className="adm-notificacoes-fechar"
+                      onClick={() => setMostrarNotificacoes(false)}
+                      aria-label="Fechar notificações"
+                      title="Fechar"
+                    >
+                      <IconeX />
                     </button>
-                  )}
+                  </div>
                 </div>
 
                 {notificacoes.length === 0 ? (

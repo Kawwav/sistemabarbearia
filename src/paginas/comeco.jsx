@@ -4,6 +4,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import logo from '/sualogo.png'
 import { useAuth } from '../contexto/AuthContext'
+import { useLenis } from '../contexto/SmoothScrollContext'
 import './comeco.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -15,11 +16,30 @@ function Comeco({ onFinish, duracao = 2200 }) {
   const videoContainerRef = useRef(null)
   const navigate = useNavigate()
   const { estaLogado } = useAuth()
+  const lenis = useLenis()
 
   // se já estiver logado, vai direto pro agendamento; senão, pede login primeiro
   function irParaAgendamento(e) {
     e.preventDefault()
     navigate(estaLogado ? '/agendar' : '/login')
+  }
+
+  // desce suavemente até a seção de serviços ao clicar em "Descubra mais".
+  // usa o Lenis (em vez do salto padrão do navegador) porque ele é quem
+  // está controlando o scroll suave do site inteiro, e a seção do vídeo
+  // fica "pinada" pelo ScrollTrigger, que o Lenis já mantém sincronizado
+  function descobrirMais(e) {
+    e.preventDefault()
+
+    const alvo = document.querySelector('#Time')
+    if (!alvo) return
+
+    if (lenis) {
+      lenis.scrollTo(alvo, { offset: 0, duration: 1.2 })
+    } else {
+      // sem lenis (ex: prefers-reduced-motion ativo): scroll instantâneo nativo
+      alvo.scrollIntoView({ behavior: 'auto' })
+    }
   }
 
   // velocidade do video
@@ -46,34 +66,67 @@ function Comeco({ onFinish, duracao = 2200 }) {
     }
   }, [duracao, onFinish])
 
-  // encolher o video ao rolar para a secao de servicos
+  // encolher o video ao rolar para a secao de servicos (funciona em desktop e mobile)
   useLayoutEffect(() => {
+    // normaliza o scroll no touch (evita saltos/travamentos do pin no iOS/Android)
+    ScrollTrigger.normalizeScroll(true)
+
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: 'top top',
-          end: '+=130%',
-          scrub: 1.8, // scrub alto = movimento suavizado, com "atraso" seguindo o scroll
-          pin: true,
-          pinSpacing: true,
+      // matchMedia: mesma animação, mas com o tamanho final e a distância de
+      // scroll ajustados para telas menores
+      const mm = gsap.matchMedia()
+
+      mm.add(
+        {
+          isMobile: '(max-width: 640px)',
+          isTablet: '(min-width: 641px) and (max-width: 1024px)',
+          isDesktop: '(min-width: 1025px)',
         },
-      })
+        (context) => {
+          const { isMobile, isTablet } = context.conditions
 
-      // pequeno delay: os primeiros 20% do scroll nao encolhem nada
-      tl.to(videoContainerRef.current, { duration: 0.2 })
+          // no celular o alvo é relativo à largura da tela, para nunca
+          // ficar maior que o viewport
+          const tamanhoFinal = isMobile ? '82vw' : isTablet ? '260px' : '320px'
+          const distanciaScroll = isMobile ? '+=100%' : '+=130%'
 
-      // encolhimento suave e gradual
-      tl.to(videoContainerRef.current, {
-        width: '320px',
-        height: '320px',
-        borderRadius: '24px',
-        ease: 'power2.inOut',
-        duration: 0.8,
-      })
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: heroRef.current,
+              start: 'top top',
+              end: distanciaScroll,
+              scrub: 1.8, // scrub alto = movimento suavizado, com "atraso" seguindo o scroll
+              pin: true,
+              pinSpacing: true,
+              anticipatePin: 1,
+              invalidateOnRefresh: true,
+            },
+          })
+
+          // pequeno delay: os primeiros 20% do scroll nao encolhem nada
+          tl.to(videoContainerRef.current, { duration: 0.2 })
+
+          // encolhimento suave e gradual
+          tl.to(videoContainerRef.current, {
+            width: tamanhoFinal,
+            height: tamanhoFinal,
+            borderRadius: '24px',
+            ease: 'power2.inOut',
+            duration: 0.8,
+          })
+        }
+      )
     }, heroRef)
 
-    return () => ctx.revert()
+    // recalcula as posições do ScrollTrigger quando o navegador mobile
+    // esconde/mostra a barra de endereço (mudando a altura da viewport)
+    const recalcular = () => ScrollTrigger.refresh()
+    window.addEventListener('resize', recalcular)
+
+    return () => {
+      window.removeEventListener('resize', recalcular)
+      ctx.revert()
+    }
   }, [])
 
   return (
@@ -111,7 +164,14 @@ function Comeco({ onFinish, duracao = 2200 }) {
           <br />
           Barbearia Nome
         </h1>
-        <a href="#servicos" className="comeco-botao">
+        <a
+          href="/agendar"
+          className="comeco-agendar-mobile"
+          onClick={irParaAgendamento}
+        >
+        </a>
+
+        <a href="#Time" className="comeco-botao" onClick={descobrirMais}>
           Descubra mais
           <span className="comeco-botao-icone">↓</span>
         </a>

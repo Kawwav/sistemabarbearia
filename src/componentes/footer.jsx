@@ -6,10 +6,9 @@ import { useGLTF, Environment } from '@react-three/drei'
 import { useAuth } from '../contexto/AuthContext'
 const modeloTesoura = `${import.meta.env.BASE_URL}barbers_scissors.glb`
 
-// frase que corre da direita para a esquerda no topo do footer
 const FRASE_MARQUEE = '"o bom trabalho se faz como as formigas fazem as coisas: pouco a pouco" — Lafcadio Hearn'
 
-// dados de contato / funcionamento — ajuste com as informações reais da barbearia
+// dados de contato
 const ENDERECO = 'Rua Exemplo, 123 — São Paulo, SP'
 const HORARIO = 'Seg a Sáb · 9h às 20h'
 const LINK_INSTAGRAM = 'https://instagram.com/barbearia'
@@ -117,7 +116,7 @@ function Footer() {
   const navigate = useNavigate()
   const { estaLogado } = useAuth()
 
-  // se já estiver logado, vai direto pro agendamento; senão, pede login primeiro
+  // se já estiver logado, vai direto pro agendamento senão pede login primeiro
   function irParaAgendamento(e) {
     e.preventDefault()
     navigate(estaLogado ? '/agendar' : '/login')

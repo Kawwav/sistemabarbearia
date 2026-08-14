@@ -8,6 +8,18 @@
   padding: 48px 24px 100px;
 }
 
+@media (max-width: 640px) {
+  .adm {
+    padding: 32px 16px 80px;
+  }
+}
+
+@media (max-width: 380px) {
+  .adm {
+    padding: 24px 12px 72px;
+  }
+}
+
 .adm-sino-wrap {
   position: relative;
 }
@@ -75,6 +87,12 @@
   color: #fff;
 }
 
+.adm-notificacoes-cabecalho-acoes {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .adm-notificacoes-limpar {
   border: none;
   background: transparent;
@@ -87,6 +105,27 @@
 }
 
 .adm-notificacoes-limpar:hover {
+  color: #fff;
+}
+
+.adm-notificacoes-fechar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: #8a8a8a;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.adm-notificacoes-fechar:hover {
+  background: rgba(255, 255, 255, 0.1);
   color: #fff;
 }
 
@@ -186,6 +225,17 @@
   }
 }
 
+@media (max-width: 480px) {
+  .adm-notificacoes-painel {
+    position: fixed;
+    top: 72px;
+    right: 12px;
+    left: 12px;
+    width: auto;
+    max-height: 65vh;
+  }
+}
+
 .adm-cabecalho {
   display: flex;
   align-items: flex-start;
@@ -193,6 +243,7 @@
   gap: 16px;
   max-width: 900px;
   margin: 0 auto 32px;
+  flex-wrap: wrap;
 }
 
 .adm-etiqueta {
@@ -215,6 +266,25 @@
   align-items: center;
   gap: 14px;
   flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 640px) {
+  .adm-cabecalho-direita {
+    width: 100%;
+    gap: 10px;
+    justify-content: flex-start;
+  }
+
+  .adm-email {
+    display: none;
+  }
+
+  .adm-cadastros,
+  .adm-sair {
+    padding: 9px 14px;
+    font-size: 12px;
+  }
 }
 
 .adm-email {
@@ -329,6 +399,20 @@
   .adm-metricas {
     grid-template-columns: 1fr;
   }
+
+  .adm-metrica-cartao {
+    padding: 14px;
+    gap: 12px;
+  }
+
+  .adm-metrica-icone {
+    width: 34px;
+    height: 34px;
+  }
+
+  .adm-metrica-valor {
+    font-size: 16px;
+  }
 }
 
 .adm-barra-ferramentas {
@@ -367,6 +451,30 @@
   font-size: 13px;
   color: #8a8a8a;
   white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .adm-busca {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .adm-barra-ferramentas {
+    gap: 10px;
+  }
+
+  .adm-contagem {
+    flex: 1 1 100%;
+  }
+
+  .adm-novo-abrir,
+  .adm-bloquear-abrir,
+  .adm-bloquear-abrir.adm-filtros-abrir-ativo {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
 }
 
 .adm-novo-abrir {
@@ -582,6 +690,14 @@
   background: rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+}
+
+@media (max-width: 640px) {
+  .adm-novo-cartao,
+  .adm-bloqueio-cartao {
+    padding: 20px;
+    border-radius: 16px;
+  }
 }
 
 .adm-novo-cabecalho {
@@ -1032,5 +1148,45 @@
 
   .adm-linha {
     flex-wrap: wrap;
+  }
+
+  .adm-acoes {
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .adm-linha {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .adm-horario {
+    width: auto;
+  }
+
+  .adm-info-topo {
+    justify-content: space-between;
+  }
+
+  .adm-acoes {
+    width: 100%;
+    justify-content: flex-end;
+    margin-left: 0;
+  }
+
+  .adm-bloqueio-linha {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .adm-bloqueio-linha .adm-status {
+    align-self: flex-start;
+  }
+
+  .adm-bloqueio-linha .adm-cancelar {
+    align-self: flex-end;
   }
 }

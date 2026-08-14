@@ -504,4 +504,14 @@
   .novoagendamento-confirmar {
     width: 100%;
   }
+
+  .novoagendamento-horarios {
+    grid-template-columns: repeat(auto-fill, minmax(62px, 1fr));
+    gap: 8px;
+  }
+
+  .novoagendamento-horario {
+    padding: 8px 0;
+    font-size: 13px;
+  }
 }

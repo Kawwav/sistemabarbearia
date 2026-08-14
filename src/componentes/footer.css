@@ -22,6 +22,18 @@
   padding: 60px 24px 0;
 }
 
+@media (max-width: 720px) {
+  .footer-conteudo {
+    padding: 48px 20px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-conteudo {
+    padding: 40px 16px 0;
+  }
+}
+
 /* topo: espaçador + nome grande centralizado + coluna direita (frase + modelo 3d) */
 .footer-topo {
   display: grid;
@@ -34,6 +46,15 @@
 
 .footer-topo-esquerda {
   /* espaçador vazio que equilibra a coluna da direita, mantendo o nome no centro real */
+}
+
+/* tablet: aperta o grid antes de empilhar, evitando que a coluna da direita fique
+   espremida contra o nome grande na faixa entre 721px e 1024px */
+@media (max-width: 1024px) {
+  .footer-topo {
+    grid-template-columns: 1fr auto minmax(200px, 340px);
+    gap: 24px;
+  }
 }
 
 .footer-marca {
@@ -50,6 +71,13 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+/* tablet: cresce menos rápido que no desktop, pra não brigar de espaço com a coluna direita */
+@media (max-width: 1024px) {
+  .footer-marca {
+    font-size: clamp(48px, 8vw, 140px);
+  }
 }
 
 /* coluna direita: frase em cima, modelo 3d preenchendo o espaço logo abaixo */
@@ -84,6 +112,13 @@
   -webkit-backdrop-filter: blur(6px);
 }
 
+@media (max-width: 480px) {
+  .footer-marquee-wrap::before,
+  .footer-marquee-wrap::after {
+    width: 28px;
+  }
+}
+
 .footer-marquee-wrap::before {
   left: 0;
   mask-image: linear-gradient(to right, #000 0%, transparent 100%);
@@ -113,6 +148,13 @@
   white-space: nowrap;
 }
 
+@media (max-width: 480px) {
+  .footer-marquee-texto {
+    font-size: 12px;
+    gap: 32px;
+  }
+}
+
 @keyframes footer-marquee {
   from {
     transform: translateX(0);
@@ -136,6 +178,18 @@
   width: 100%;
   min-height: 260px;
   pointer-events: none;
+}
+
+@media (max-width: 720px) {
+  .footer-cena {
+    min-height: 220px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-cena {
+    min-height: 180px;
+  }
 }
 
 /* linha inferior: localização + data à esquerda, horário + redes/agendamento à direita */
@@ -188,8 +242,15 @@
 .footer-social {
   display: flex;
   align-items: center;
-  gap: 18px;
+  flex-wrap: wrap;
+  gap: 12px 18px;
   margin-top: 10px;
+}
+
+@media (max-width: 720px) {
+  .footer-social {
+    justify-content: flex-start;
+  }
 }
 
 .footer-social-link {
@@ -253,6 +314,7 @@
 
   .footer-marca {
     text-align: center;
+    font-size: clamp(40px, 15vw, 120px);
   }
 
   .footer-lado-direito {

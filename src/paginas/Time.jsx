@@ -57,7 +57,7 @@ function FraseTime({ children }) {
 
 function Time() {
   return (
-    <section className="time">
+    <section className="time" id="Time">
       <h2 className="time-titulo">Conheça nosso time</h2>
 
       <div className="time-retangulos">

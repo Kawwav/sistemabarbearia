@@ -2,9 +2,6 @@ import { createContext, useContext, useEffect, useState } from 'react'
 
 const AdminAuthContext = createContext(null)
 const CHAVE_ARMAZENAMENTO = 'barbearia_admin'
-
-// Sessão do admin, separada da sessão do cliente (contextos diferentes).
-// Fica salva no localStorage só pra manter o login entre recarregamentos de página.
 export function AdminAuthProvider({ children }) {
   const [admin, setAdmin] = useState(() => {
     try {
@@ -23,7 +20,6 @@ export function AdminAuthProvider({ children }) {
         localStorage.removeItem(CHAVE_ARMAZENAMENTO)
       }
     } catch {
-      // localStorage indisponível — segue sem persistir
     }
   }, [admin])
 

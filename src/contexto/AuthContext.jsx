@@ -3,8 +3,6 @@ import { createContext, useContext, useEffect, useState } from 'react'
 const AuthContext = createContext(null)
 const CHAVE_ARMAZENAMENTO = 'barbearia_usuario'
 
-// Guarda o usuário logado no localStorage por enquanto.
-// Quando você tiver um backend de verdade, troque isso por um token/sessão real.
 export function AuthProvider({ children }) {
   const [usuario, setUsuario] = useState(() => {
     try {
@@ -23,7 +21,6 @@ export function AuthProvider({ children }) {
         localStorage.removeItem(CHAVE_ARMAZENAMENTO)
       }
     } catch {
-      // localStorage indisponível (ex.: modo privado) — segue sem persistir
     }
   }, [usuario])
 

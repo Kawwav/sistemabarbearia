@@ -101,8 +101,6 @@ const imagens = [
         <iframe
           className="salao-mapa"
           src="https://www.google.com/maps?q=Barbearia&output=embed"
-          width="100%"
-          height="450"
           style={{ border: 0 }}
           allowFullScreen=""
           loading="lazy"
