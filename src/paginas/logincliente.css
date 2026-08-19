@@ -7,17 +7,17 @@
   align-items: center;
   justify-content: center;
   padding: 40px 20px;
-  background: #111;
+  background: linear-gradient(135deg, #ffffff 0%, #e4e4e4 45%, #4a4a4a 100%);
   font-family: 'Instrument Sans', Arial, sans-serif;
   overflow: hidden;
 }
 
-/* vinheta sutil só pra dar profundidade ao fundo escuro */
+/* brilho suave no canto inferior direito, escurecendo em direção ao preto */
 .logincliente::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.06), transparent 55%);
+  background: radial-gradient(circle at 85% 100%, rgba(0, 0, 0, 0.35), transparent 55%);
   pointer-events: none;
 }
 
@@ -25,13 +25,38 @@
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 440px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 24px;
-  padding: 40px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  max-width: 420px;
+  background: #fff;
+  border: 1px solid rgba(20, 20, 20, 0.06);
+  border-radius: 28px;
+  padding: 40px 36px;
+  box-shadow: 0 24px 60px -20px rgba(60, 45, 20, 0.25);
+}
+
+/* lockup do logo */
+.logincliente-marca {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.logincliente-marca-simbolo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  color: #16171d;
+}
+
+.logincliente-marca-texto {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #16171d;
+  text-transform: uppercase;
 }
 
 /* abas: entrar / criar conta */
@@ -39,8 +64,8 @@
   display: flex;
   gap: 4px;
   padding: 4px;
-  margin-bottom: 32px;
-  background: rgba(255, 255, 255, 0.05);
+  margin-bottom: 28px;
+  background: #f1efe9;
   border-radius: 12px;
 }
 
@@ -50,37 +75,41 @@
   border: none;
   border-radius: 9px;
   background: transparent;
-  color: #9a9a9a;
+  color: #8a8578;
   font-family: inherit;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.25s ease, color 0.25s ease;
+  transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .logincliente-aba-ativa {
   background: #fff;
   color: #16171d;
+  box-shadow: 0 2px 8px rgba(20, 20, 20, 0.08);
 }
 
 .logincliente-formulario {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 16px;
 }
 
 .logincliente-titulo {
   margin: 0;
-  color: #fff;
-  font-size: 26px;
+  color: #16171d;
+  font-size: 28px;
   font-weight: 700;
   letter-spacing: -0.5px;
+  text-align: center;
 }
 
 .logincliente-subtitulo {
-  margin: -12px 0 4px;
-  color: #8a8a8a;
+  margin: -8px 0 4px;
+  color: #8a8578;
   font-size: 14px;
+  text-align: center;
+  line-height: 1.5;
 }
 
 .logincliente-campo {
@@ -88,17 +117,17 @@
   flex-direction: column;
   gap: 8px;
   font-size: 13px;
-  color: #ccc;
+  color: #55524a;
 }
 
 .logincliente-campo input {
   width: 100%;
   box-sizing: border-box;
-  padding: 12px 14px;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  background: rgba(255, 255, 255, 0.05);
-  color: #fff;
+  padding: 13px 16px;
+  border-radius: 12px;
+  border: 1px solid #e7e3d9;
+  background: #faf9f6;
+  color: #16171d;
   font-family: inherit;
   font-size: 15px;
   outline: none;
@@ -106,17 +135,16 @@
 }
 
 .logincliente-campo input::placeholder {
-  color: #6a6a6a;
+  color: #b3ae9f;
 }
 
 .logincliente-campo input:focus {
-  border-color: rgba(255, 255, 255, 0.6);
-  background: rgba(255, 255, 255, 0.08);
+  border-color: #16171d;
+  background: #fff;
 }
 
-/* deixa o ícone do seletor de data legível no fundo escuro */
 .logincliente-campo input[type='date'] {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 .logincliente-linha {
@@ -129,10 +157,22 @@
   min-width: 0;
 }
 
-.logincliente-campo-senha {
+/* wrapper genérico p/ campos com ícone à esquerda */
+.logincliente-campo-com-icone {
   position: relative;
   display: flex;
   align-items: center;
+}
+
+.logincliente-campo-com-icone svg {
+  position: absolute;
+  left: 14px;
+  color: #b3ae9f;
+  pointer-events: none;
+}
+
+.logincliente-campo-com-icone input {
+  padding-left: 42px;
 }
 
 .logincliente-campo-senha input {
@@ -149,18 +189,18 @@
   height: 28px;
   border: none;
   background: transparent;
-  color: #9a9a9a;
+  color: #b3ae9f;
   cursor: pointer;
   border-radius: 6px;
   transition: color 0.2s ease;
 }
 
 .logincliente-alternar-senha:hover {
-  color: #fff;
+  color: #16171d;
 }
 
 .logincliente-erro {
-  color: #ff8a8a;
+  color: #d9534f;
   font-size: 12px;
 }
 
@@ -168,16 +208,16 @@
   margin: 0;
   text-align: center;
   font-size: 13px;
-  color: #9be29b;
+  color: #4a8f5c;
 }
 
 .logincliente-botao {
   margin-top: 4px;
-  padding: 13px;
+  padding: 14px;
   border: none;
-  border-radius: 10px;
-  background: #fff;
-  color: #16171d;
+  border-radius: 12px;
+  background: #16171d;
+  color: #fff;
   font-family: inherit;
   font-size: 15px;
   font-weight: 600;
@@ -186,7 +226,7 @@
 }
 
 .logincliente-botao:hover {
-  background: #e9e9e9;
+  background: #2b2c34;
   transform: translateY(-1px);
 }
 
@@ -201,7 +241,7 @@
   align-items: center;
   gap: 12px;
   margin: 4px 0;
-  color: #6a6a6a;
+  color: #b3ae9f;
   font-size: 12px;
 }
 
@@ -210,7 +250,7 @@
   content: '';
   flex: 1;
   height: 1px;
-  background: rgba(255, 255, 255, 0.12);
+  background: #ece8de;
 }
 
 .logincliente-google {
@@ -218,9 +258,9 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 12px;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 13px;
+  border-radius: 12px;
+  border: 1px solid #e7e3d9;
   background: #fff;
   color: #16171d;
   font-family: inherit;
@@ -231,22 +271,22 @@
 }
 
 .logincliente-google:hover {
-  background: #f1f1f1;
+  background: #faf9f6;
   transform: translateY(-1px);
 }
 
 @media (max-width: 520px) {
   .logincliente-cartao {
-    padding: 28px 22px;
-    border-radius: 18px;
+    padding: 30px 24px;
+    border-radius: 20px;
   }
 
   .logincliente-linha {
     flex-direction: column;
-    gap: 18px;
+    gap: 16px;
   }
 
   .logincliente-titulo {
-    font-size: 22px;
+    font-size: 24px;
   }
 }

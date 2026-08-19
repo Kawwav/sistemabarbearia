@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAdminAuth } from '../contexto/AdminAuthContext'
+import AdminSidebar from './admsidebar'
 import './adm.css'
 
 const CHAVE_AGENDAMENTOS = 'barbearia_agendamentos'
@@ -19,7 +20,7 @@ const STATUS_ETIQUETA = {
   [STATUS.NAO_COMPARECEU]: 'Não compareceu',
 }
 
-// jornada padrão usada ao semear os barbeiros pela primeira vez (ver admbarbeiros.jsx)
+// jornada padrão usada ao semear os barbeiros pela primeira vez 
 function horarioPadrao() {
   return {
     dom: { ativo: false, inicio: '09:00', fim: '19:00' },
@@ -38,9 +39,7 @@ const BARBEIROS_SEED = [
   { id: 'lucas', nome: 'Lucas Souza', foto: '/barbeiro3.jpg', horarioTrabalho: horarioPadrao() },
   { id: 'rafael', nome: 'Rafael Costa', foto: '/barbeiro4.jpg', horarioTrabalho: horarioPadrao() },
 ]
-
 // os barbeiros agora são cadastrados em Cadastros > Barbeiros (admbarbeiros.jsx) e ficam
-// salvos no localStorage; essa função só lê a lista atual (não seria necessária com backend real)
 function carregarBarbeiros() {
   try {
     const salvos = localStorage.getItem(CHAVE_BARBEIROS)
@@ -56,7 +55,7 @@ const CHAVE_SERVICOS = 'barbearia_servicos'
 const CHAVE_FILIAIS = 'barbearia_filiais'
 
 // serviços e filiais padrão, usados só na primeira carga; depois disso quem manda é o
-// que estiver salvo no localStorage (cadastrado em Cadastros > Serviços / Filiais)
+
 const SERVICOS_SEED = [
   { id: 'cabelo', nome: 'Cabelo', preco: 45 },
   { id: 'barba', nome: 'Barba', preco: 35 },
@@ -71,7 +70,7 @@ const FILIAIS_SEED = [
 ]
 
 // serviços agora são cadastrados em Cadastros > Serviços (admservicos.jsx) e ficam
-// salvos no localStorage; essa função só lê a lista atual (não seria necessária com backend real)
+
 function carregarServicos() {
   try {
     const salvos = localStorage.getItem(CHAVE_SERVICOS)
@@ -84,7 +83,7 @@ function carregarServicos() {
 }
 
 // filiais agora são cadastradas em Cadastros > Filiais (admfiliais.jsx) e ficam
-// salvas no localStorage; essa função só lê a lista atual (não seria necessária com backend real)
+
 function carregarFiliais() {
   try {
     const salvas = localStorage.getItem(CHAVE_FILIAIS)
@@ -125,7 +124,6 @@ const FILTROS_VAZIOS = {
   dataFim: '',
 }
 
-// formata Date -> "AAAA-MM-DD" no fuso local (evita o desvio de um dia do toISOString)
 function paraDataLocal(data) {
   const ano = data.getFullYear()
   const mes = String(data.getMonth() + 1).padStart(2, '0')
@@ -133,7 +131,6 @@ function paraDataLocal(data) {
   return `${ano}-${mes}-${dia}`
 }
 
-// converte o período rápido escolhido em um intervalo [inicio, fim] de datas (strings AAAA-MM-DD)
 function intervaloDoPeriodo(periodo, dataInicio, dataFim) {
   if (periodo === 'personalizado') return { inicio: dataInicio || null, fim: dataFim || null }
   if (periodo === 'todos') return { inicio: null, fim: null }
@@ -195,7 +192,7 @@ function salvarAgendamentos(lista) {
   try {
     localStorage.setItem(CHAVE_AGENDAMENTOS, JSON.stringify(lista))
   } catch {
-    // sem localStorage disponível, segue sem persistir
+
   }
 }
 
@@ -211,7 +208,7 @@ function salvarBloqueios(lista) {
   try {
     localStorage.setItem(CHAVE_BLOQUEIOS, JSON.stringify(lista))
   } catch {
-    // sem localStorage disponível, segue sem persistir
+
   }
 }
 
@@ -220,14 +217,6 @@ function formatarData(data) {
     weekday: 'long',
     day: '2-digit',
     month: 'long',
-  })
-}
-
-// formata número em reais, ex.: 1234.5 -> "R$ 1.234,50"
-function formatarMoeda(valor) {
-  return (valor || 0).toLocaleString('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
   })
 }
 
@@ -283,25 +272,6 @@ function IconeFiltro() {
   )
 }
 
-function IconeCliente() {
-  return (
-    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-      <circle cx="12" cy="7" r="4" />
-    </svg>
-  )
-}
-
-function IconeUsuarios() {
-  return (
-    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-      <circle cx="9" cy="7" r="4" />
-      <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
-    </svg>
-  )
-}
-
 function IconeCadeado() {
   return (
     <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
@@ -311,27 +281,11 @@ function IconeCadeado() {
   )
 }
 
-function IconeEstrela() {
-  return (
-    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 2.5 15.09 9l7.16.62-5.41 4.7 1.64 6.99L12 17.77 5.52 21.3l1.64-6.99-5.41-4.7L8.91 9 12 2.5Z" />
-    </svg>
-  )
-}
-
 function IconeCalendario() {
   return (
     <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
       <rect x="3" y="4" width="18" height="18" rx="2" />
       <path d="M16 2v4M8 2v4M3 10h18" />
-    </svg>
-  )
-}
-
-function IconeCifrao() {
-  return (
-    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
     </svg>
   )
 }
@@ -363,6 +317,24 @@ function IconeSino() {
   )
 }
 
+function IconeChevronEsquerda() {
+  return (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M15 18l-6-6 6-6" />
+    </svg>
+  )
+}
+
+function IconeChevronDireita() {
+  return (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M9 18l6-6-6-6" />
+    </svg>
+  )
+}
+
+const DIAS_SEMANA_ABREV = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb']
+
 function Admin() {
   const navigate = useNavigate()
   const { admin, sairAdmin } = useAdminAuth()
@@ -386,7 +358,6 @@ function Admin() {
   const [toasts, setToasts] = useState([])
   const notificacoesRef = useRef(null)
 
-  // mantém o localStorage em dia sempre que a lista muda (ex.: após alterar status)
   useEffect(() => {
     salvarAgendamentos(agendamentos)
   }, [agendamentos])
@@ -435,8 +406,6 @@ function Admin() {
       }
 
       setAgendamentos((atual) => {
-        // só reage quando surgiram itens NOVOS (a lista cresceu); alterações feitas
-        // aqui mesmo já estão refletidas em "atual", então não geram notificação duplicada
         if (listaAtual.length <= atual.length) return atual
         const novos = listaAtual.slice(atual.length)
         notificarNovosAgendamentos(novos)
@@ -448,8 +417,6 @@ function Admin() {
       if (evento.key === CHAVE_AGENDAMENTOS) sincronizarComStorage()
     }
 
-    // 'storage' cobre quando o agendamento chega por outra aba/janela; o intervalo
-    // é um reforço pra não depender só do evento (alguns navegadores atrasam em aba oculta)
     window.addEventListener('storage', aoMudarStorage)
     const intervalo = setInterval(sincronizarComStorage, 5000)
 
@@ -613,7 +580,7 @@ function Admin() {
     const bloqueio = {
       id: `bloqueio-${Date.now()}`,
       tipo: novoBloqueio.tipo,
-      // folga é sempre de um barbeiro específico; feriado e manutenção, por padrão, valem pra todos
+      // folga é sempre de um barbeiro específico feriado e manutenção por padrão valem pra todos
       barbeiro: novoBloqueio.tipo === 'folga' ? novoBloqueio.barbeiro : novoBloqueio.barbeiro || '',
       data: novoBloqueio.data,
       diaTodo: novoBloqueio.diaTodo,
@@ -677,24 +644,89 @@ function Admin() {
     return Array.from(mapa.entries())
   }, [filtrados])
 
-  // métricas dos cards do topo: sempre calculadas sobre TODOS os agendamentos
-  // (não sobre a lista filtrada/buscada), pra dar uma visão geral fixa do salão
+  const gruposPorData = useMemo(() => new Map(grupos), [grupos])
+
+  const bloqueiosPorData = useMemo(() => {
+    const mapa = new Map()
+    bloqueios.forEach((b) => {
+      if (!mapa.has(b.data)) mapa.set(b.data, [])
+      mapa.get(b.data).push(b)
+    })
+    return mapa
+  }, [bloqueios])
+
+  const hojeStr = paraDataLocal(new Date())
+
+  const [mesCalendario, setMesCalendario] = useState(() => {
+    const d = new Date()
+    d.setDate(1)
+    d.setHours(0, 0, 0, 0)
+    return d
+  })
+  const [dataSelecionada, setDataSelecionada] = useState(hojeStr)
+
+  const diasCalendario = useMemo(() => {
+    const ano = mesCalendario.getFullYear()
+    const mes = mesCalendario.getMonth()
+    const primeiroDiaSemana = new Date(ano, mes, 1).getDay()
+    const totalDiasMes = new Date(ano, mes + 1, 0).getDate()
+    const totalDiasMesAnterior = new Date(ano, mes, 0).getDate()
+
+    const celulas = []
+
+    for (let i = primeiroDiaSemana - 1; i >= 0; i--) {
+      const dia = totalDiasMesAnterior - i
+      celulas.push({ data: paraDataLocal(new Date(ano, mes - 1, dia)), dia, outroMes: true })
+    }
+
+    for (let dia = 1; dia <= totalDiasMes; dia++) {
+      celulas.push({ data: paraDataLocal(new Date(ano, mes, dia)), dia, outroMes: false })
+    }
+
+    let diaProximoMes = 1
+    while (celulas.length % 7 !== 0 || celulas.length < 42) {
+      celulas.push({ data: paraDataLocal(new Date(ano, mes + 1, diaProximoMes)), dia: diaProximoMes, outroMes: true })
+      diaProximoMes++
+    }
+
+    return celulas
+  }, [mesCalendario])
+
+  const nomeMesCalendario = mesCalendario.toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' })
+
+  function mesAnterior() {
+    setMesCalendario((atual) => new Date(atual.getFullYear(), atual.getMonth() - 1, 1))
+  }
+
+  function mesSeguinte() {
+    setMesCalendario((atual) => new Date(atual.getFullYear(), atual.getMonth() + 1, 1))
+  }
+
+  function irParaHoje() {
+    const d = new Date()
+    d.setDate(1)
+    d.setHours(0, 0, 0, 0)
+    setMesCalendario(d)
+    setDataSelecionada(hojeStr)
+  }
+
+  function selecionarDia(celula) {
+    setDataSelecionada(celula.data)
+    // clicar num dia "fora" do mês (ponta do mês anterior/seguinte) já leva pra esse mês
+    if (celula.outroMes) {
+      const [ano, mes] = celula.data.split('-').map(Number)
+      setMesCalendario(new Date(ano, mes - 1, 1))
+    }
+  }
+
+  const itensDataSelecionada = gruposPorData.get(dataSelecionada) || []
+  const bloqueiosDataSelecionada = bloqueiosPorData.get(dataSelecionada) || []
   const metricas = useMemo(() => {
     const hoje = paraDataLocal(new Date())
     const { inicio: inicioSemana, fim: fimSemana } = intervaloDoPeriodo('semana', '', '')
 
     const agendamentosHoje = agendamentos.filter((a) => a.data === hoje)
-
-    const faturamentoHoje = agendamentos
-      .filter((a) => a.data === hoje && a.status === STATUS.CONCLUIDO)
-      .reduce((soma, a) => soma + (Number(a.valor) || 0), 0)
-
-    const faturamentoSemana = agendamentos
-      .filter((a) => a.data >= inicioSemana && a.data <= fimSemana && a.status === STATUS.CONCLUIDO)
-      .reduce((soma, a) => soma + (Number(a.valor) || 0), 0)
-
-    // taxa de cancelamento = "não compareceu" sobre o total de agendamentos já
-    // resolvidos (concluídos + não compareceu); os que ainda estão "agendado" não entram
+    const agendamentosSemana = agendamentos.filter((a) => a.data >= inicioSemana && a.data <= fimSemana)
     const resolvidos = agendamentos.filter(
       (a) => a.status === STATUS.CONCLUIDO || a.status === STATUS.NAO_COMPARECEU
     )
@@ -703,14 +735,16 @@ function Admin() {
 
     return {
       totalHoje: agendamentosHoje.length,
-      faturamentoHoje,
-      faturamentoSemana,
+      totalSemana: agendamentosSemana.length,
       taxaCancelamento,
     }
   }, [agendamentos])
 
   return (
-    <section className="adm">
+    <div className="admlayout">
+      <AdminSidebar ativa="/admin" />
+      <div className="admlayout-main">
+      <section className="adm">
       {toasts.length > 0 && (
         <div className="adm-toasts">
           {toasts.map((toast) => (
@@ -789,18 +823,6 @@ function Admin() {
               </div>
             )}
           </div>
-          <button type="button" className="adm-cadastros" onClick={() => navigate('/admin/clientes')}>
-            <IconeCliente />
-            Clientes
-          </button>
-          <button type="button" className="adm-cadastros" onClick={() => navigate('/admin/clube')}>
-            <IconeEstrela />
-            Clube Falcão
-          </button>
-          <button type="button" className="adm-cadastros" onClick={() => navigate('/admin/barbeiros')}>
-            <IconeUsuarios />
-            Cadastros
-          </button>
           <span className="adm-email">{admin?.email}</span>
           <button type="button" className="adm-sair" onClick={handleSair}>
             Sair
@@ -823,21 +845,21 @@ function Admin() {
 
         <div className="adm-metrica-cartao">
           <span className="adm-metrica-icone">
-            <IconeCifrao />
+            <IconeGrafico />
           </span>
           <div className="adm-metrica-texto">
-            <span className="adm-metrica-valor">{formatarMoeda(metricas.faturamentoHoje)}</span>
-            <span className="adm-metrica-rotulo">faturamento hoje</span>
+            <span className="adm-metrica-valor">{metricas.totalSemana}</span>
+            <span className="adm-metrica-rotulo">agendamentos na semana</span>
           </div>
         </div>
 
         <div className="adm-metrica-cartao">
           <span className="adm-metrica-icone">
-            <IconeGrafico />
+            <IconeCadeado />
           </span>
           <div className="adm-metrica-texto">
-            <span className="adm-metrica-valor">{formatarMoeda(metricas.faturamentoSemana)}</span>
-            <span className="adm-metrica-rotulo">faturamento na semana</span>
+            <span className="adm-metrica-valor">{bloqueios.length}</span>
+            <span className="adm-metrica-rotulo">horários bloqueados</span>
           </div>
         </div>
 
@@ -1213,139 +1235,225 @@ function Admin() {
         </div>
       )}
 
-      {grupos.length === 0 ? (
-        <p className="adm-vazio">Nenhum agendamento encontrado.</p>
-      ) : (
-        <div className="adm-grupos">
-          {grupos.map(([data, itens]) => (
-            <div key={data} className="adm-grupo">
-              <h2 className="adm-grupo-titulo">{formatarData(data)}</h2>
-              <div className="adm-tabela">
-                {itens.map((item) => {
-                  const status = item.status || STATUS.AGENDADO
-                  const emEdicao = editandoIndice === item.indiceOriginal
+      <div className="adm-calendario-secao">
+        <div className="adm-calendario-cartao">
+          <div className="adm-calendario-cabecalho">
+            <div className="adm-calendario-nav">
+              <button type="button" className="adm-calendario-seta" onClick={mesAnterior} aria-label="Mês anterior" title="Mês anterior">
+                <IconeChevronEsquerda />
+              </button>
+              <h2 className="adm-calendario-mes">{nomeMesCalendario}</h2>
+              <button type="button" className="adm-calendario-seta" onClick={mesSeguinte} aria-label="Próximo mês" title="Próximo mês">
+                <IconeChevronDireita />
+              </button>
+            </div>
+            <button type="button" className="adm-calendario-hoje" onClick={irParaHoje}>
+              Hoje
+            </button>
+          </div>
 
-                  if (emEdicao) {
-                    return (
-                      <div key={item.indiceOriginal} className="adm-linha adm-linha-editando">
-                        <div className="adm-editar-form">
-                          <label className="adm-editar-campo">
-                            <span>Barbeiro</span>
-                            <select
-                              value={rascunho.barbeiro}
-                              onChange={(e) => setRascunho((r) => ({ ...r, barbeiro: e.target.value }))}
-                            >
-                              {barbeiros.map((b) => (
-                                <option key={b.id} value={b.nome}>
-                                  {b.nome}
-                                </option>
-                              ))}
-                            </select>
-                          </label>
-                          <label className="adm-editar-campo">
-                            <span>Data</span>
-                            <input
-                              type="date"
-                              value={rascunho.data}
-                              onChange={(e) => setRascunho((r) => ({ ...r, data: e.target.value }))}
-                            />
-                          </label>
-                          <label className="adm-editar-campo">
-                            <span>Horário</span>
-                            <input
-                              type="time"
-                              value={rascunho.horario}
-                              onChange={(e) => setRascunho((r) => ({ ...r, horario: e.target.value }))}
-                            />
-                          </label>
-                          <div className="adm-editar-acoes">
-                            <button
-                              type="button"
-                              className="adm-editar-salvar"
-                              onClick={() => salvarEdicao(item.indiceOriginal)}
-                            >
-                              Salvar
-                            </button>
-                            <button type="button" className="adm-editar-cancelar" onClick={cancelarEdicao}>
-                              Cancelar
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    )
-                  }
+          <div className="adm-calendario-semana">
+            {DIAS_SEMANA_ABREV.map((dia) => (
+              <span key={dia} className="adm-calendario-semana-dia">
+                {dia}
+              </span>
+            ))}
+          </div>
 
-                  return (
-                    <div
-                      key={item.indiceOriginal}
-                      className={`adm-linha ${status !== STATUS.AGENDADO ? 'adm-linha-resolvida' : ''}`}
-                    >
-                      <span className="adm-horario">{item.horario}</span>
-                      <div className="adm-info">
-                        <div className="adm-info-topo">
-                          <span className="adm-cliente">{item.cliente || 'Sem nome'}</span>
-                          {status !== STATUS.AGENDADO && (
-                            <span
-                              className={`adm-status adm-status-${status === STATUS.CONCLUIDO ? 'concluido' : 'nao-compareceu'}`}
-                            >
-                              {STATUS_ETIQUETA[status]}
-                            </span>
-                          )}
-                        </div>
-                        <span className="adm-detalhe">
-                          {item.servico} · {item.barbeiro}
-                          {item.filial ? ` · ${item.filial}` : ''}
+          <div className="adm-calendario-grade">
+            {diasCalendario.map((celula) => {
+              const itensDoDia = gruposPorData.get(celula.data) || []
+              const bloqueiosDoDia = bloqueiosPorData.get(celula.data) || []
+              const pendentes = itensDoDia.filter((i) => (i.status || STATUS.AGENDADO) === STATUS.AGENDADO).length
+
+              const classes = [
+                'adm-calendario-dia',
+                celula.outroMes ? 'adm-calendario-dia-fora' : '',
+                celula.data === dataSelecionada ? 'adm-calendario-dia-selecionado' : '',
+                celula.data === hojeStr ? 'adm-calendario-dia-hoje' : '',
+              ]
+                .filter(Boolean)
+                .join(' ')
+
+              return (
+                <button type="button" key={celula.data} className={classes} onClick={() => selecionarDia(celula)}>
+                  <span className="adm-calendario-dia-numero">{celula.dia}</span>
+                  {(itensDoDia.length > 0 || bloqueiosDoDia.length > 0) && (
+                    <span className="adm-calendario-dia-marcadores">
+                      {itensDoDia.length > 0 && (
+                        <span className={`adm-calendario-dia-contagem ${pendentes === 0 ? 'adm-calendario-dia-contagem-resolvida' : ''}`}>
+                          {itensDoDia.length}
                         </span>
-                        {item.observacoes && <span className="adm-obs">{item.observacoes}</span>}
-                      </div>
+                      )}
+                      {bloqueiosDoDia.length > 0 && <span className="adm-calendario-dia-bloqueio-ponto" title="Horário bloqueado" />}
+                    </span>
+                  )}
+                </button>
+              )
+            })}
+          </div>
+        </div>
 
-                      <div className="adm-acoes">
-                        <button
-                          type="button"
-                          className="adm-acao adm-acao-editar"
-                          onClick={() => iniciarEdicao(item)}
-                          aria-label="Editar agendamento"
-                          title="Editar agendamento"
-                        >
-                          <IconeLapis />
-                        </button>
-                        <button
-                          type="button"
-                          className={`adm-acao adm-acao-concluir ${status === STATUS.CONCLUIDO ? 'adm-acao-concluir-ativa' : ''}`}
-                          onClick={() => alternarStatus(item.indiceOriginal, STATUS.CONCLUIDO)}
-                          aria-label="Marcar como concluído"
-                          title="Marcar como concluído"
-                        >
-                          <IconeCheck />
-                        </button>
-                        <button
-                          type="button"
-                          className={`adm-acao adm-acao-naocompareceu ${status === STATUS.NAO_COMPARECEU ? 'adm-acao-naocompareceu-ativa' : ''}`}
-                          onClick={() => alternarStatus(item.indiceOriginal, STATUS.NAO_COMPARECEU)}
-                          aria-label="Marcar que não compareceu"
-                          title="Marcar que não compareceu"
-                        >
-                          <IconeX />
-                        </button>
-                        <button
-                          type="button"
-                          className="adm-acao adm-cancelar"
-                          onClick={() => excluir(item.indiceOriginal)}
-                          aria-label="Excluir agendamento"
-                          title="Excluir agendamento"
-                        >
-                          <IconeLixeira />
-                        </button>
+        <div className="adm-calendario-detalhe">
+          <h2 className="adm-grupo-titulo adm-calendario-detalhe-titulo">
+            {formatarData(dataSelecionada)}
+            {dataSelecionada === hojeStr && <span className="adm-calendario-etiqueta-hoje">Hoje</span>}
+          </h2>
+
+          {bloqueiosDataSelecionada.length > 0 && (
+            <div className="adm-tabela adm-calendario-bloqueios-do-dia">
+              {bloqueiosDataSelecionada.map((b) => (
+                <div key={b.id} className="adm-bloqueio-linha">
+                  <span className={`adm-status adm-status-bloqueio-${b.tipo}`}>{TIPO_BLOQUEIO_ETIQUETA[b.tipo]}</span>
+                  <div className="adm-info">
+                    <span className="adm-cliente">{b.barbeiro || 'Todos os barbeiros'}</span>
+                    <span className="adm-detalhe">{b.diaTodo ? 'Dia inteiro' : `${b.horarioInicio} às ${b.horarioFim}`}</span>
+                    {b.motivo && <span className="adm-obs">{b.motivo}</span>}
+                  </div>
+                  <button
+                    type="button"
+                    className="adm-acao adm-cancelar"
+                    onClick={() => removerBloqueio(b.id)}
+                    aria-label="Remover bloqueio"
+                    title="Remover bloqueio"
+                  >
+                    <IconeLixeira />
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {itensDataSelecionada.length === 0 ? (
+            <p className="adm-vazio adm-calendario-vazio">Nenhum agendamento neste dia.</p>
+          ) : (
+            <div className="adm-tabela">
+              {itensDataSelecionada.map((item) => {
+                const status = item.status || STATUS.AGENDADO
+                const emEdicao = editandoIndice === item.indiceOriginal
+
+                if (emEdicao) {
+                  return (
+                    <div key={item.indiceOriginal} className="adm-linha adm-linha-editando">
+                      <div className="adm-editar-form">
+                        <label className="adm-editar-campo">
+                          <span>Barbeiro</span>
+                          <select
+                            value={rascunho.barbeiro}
+                            onChange={(e) => setRascunho((r) => ({ ...r, barbeiro: e.target.value }))}
+                          >
+                            {barbeiros.map((b) => (
+                              <option key={b.id} value={b.nome}>
+                                {b.nome}
+                              </option>
+                            ))}
+                          </select>
+                        </label>
+                        <label className="adm-editar-campo">
+                          <span>Data</span>
+                          <input
+                            type="date"
+                            value={rascunho.data}
+                            onChange={(e) => setRascunho((r) => ({ ...r, data: e.target.value }))}
+                          />
+                        </label>
+                        <label className="adm-editar-campo">
+                          <span>Horário</span>
+                          <input
+                            type="time"
+                            value={rascunho.horario}
+                            onChange={(e) => setRascunho((r) => ({ ...r, horario: e.target.value }))}
+                          />
+                        </label>
+                        <div className="adm-editar-acoes">
+                          <button
+                            type="button"
+                            className="adm-editar-salvar"
+                            onClick={() => salvarEdicao(item.indiceOriginal)}
+                          >
+                            Salvar
+                          </button>
+                          <button type="button" className="adm-editar-cancelar" onClick={cancelarEdicao}>
+                            Cancelar
+                          </button>
+                        </div>
                       </div>
                     </div>
                   )
-                })}
-              </div>
+                }
+
+                return (
+                  <div
+                    key={item.indiceOriginal}
+                    className={`adm-linha ${status !== STATUS.AGENDADO ? 'adm-linha-resolvida' : ''}`}
+                  >
+                    <span className="adm-horario">{item.horario}</span>
+                    <div className="adm-info">
+                      <div className="adm-info-topo">
+                        <span className="adm-cliente">{item.cliente || 'Sem nome'}</span>
+                        {status !== STATUS.AGENDADO && (
+                          <span
+                            className={`adm-status adm-status-${status === STATUS.CONCLUIDO ? 'concluido' : 'nao-compareceu'}`}
+                          >
+                            {STATUS_ETIQUETA[status]}
+                          </span>
+                        )}
+                      </div>
+                      <span className="adm-detalhe">
+                        {item.servico} · {item.barbeiro}
+                        {item.filial ? ` · ${item.filial}` : ''}
+                      </span>
+                      {item.observacoes && <span className="adm-obs">{item.observacoes}</span>}
+                    </div>
+
+                    <div className="adm-acoes">
+                      <button
+                        type="button"
+                        className="adm-acao adm-acao-editar"
+                        onClick={() => iniciarEdicao(item)}
+                        aria-label="Editar agendamento"
+                        title="Editar agendamento"
+                      >
+                        <IconeLapis />
+                      </button>
+                      <button
+                        type="button"
+                        className={`adm-acao adm-acao-concluir ${status === STATUS.CONCLUIDO ? 'adm-acao-concluir-ativa' : ''}`}
+                        onClick={() => alternarStatus(item.indiceOriginal, STATUS.CONCLUIDO)}
+                        aria-label="Marcar como concluído"
+                        title="Marcar como concluído"
+                      >
+                        <IconeCheck />
+                      </button>
+                      <button
+                        type="button"
+                        className={`adm-acao adm-acao-naocompareceu ${status === STATUS.NAO_COMPARECEU ? 'adm-acao-naocompareceu-ativa' : ''}`}
+                        onClick={() => alternarStatus(item.indiceOriginal, STATUS.NAO_COMPARECEU)}
+                        aria-label="Marcar que não compareceu"
+                        title="Marcar que não compareceu"
+                      >
+                        <IconeX />
+                      </button>
+                      <button
+                        type="button"
+                        className="adm-acao adm-cancelar"
+                        onClick={() => excluir(item.indiceOriginal)}
+                        aria-label="Excluir agendamento"
+                        title="Excluir agendamento"
+                      >
+                        <IconeLixeira />
+                      </button>
+                    </div>
+                  </div>
+                )
+              })}
             </div>
-          ))}
+          )}
         </div>
-      )}
-    </section>
+      </div>
+      </section>
+      </div>
+    </div>
   )
 }
 

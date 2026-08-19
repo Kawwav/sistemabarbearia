@@ -1,0 +1,156 @@
+.admlayout {
+  display: flex;
+  align-items: stretch;
+  min-height: 100vh;
+  background: #111;
+}
+
+.admlayout-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.admsidebar {
+  position: sticky;
+  top: 0;
+  flex-shrink: 0;
+  width: 232px;
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 28px 16px;
+  background: #15161b;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: 'Instrument Sans', Arial, sans-serif;
+}
+
+.admsidebar-marca {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 10px;
+}
+
+.admsidebar-marca-nome {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.2px;
+}
+
+.admsidebar-marca-etiqueta {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #7a7a7a;
+}
+
+.admsidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.admsidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 11px 14px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: #9a9a9a;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.admsidebar-item svg {
+  flex-shrink: 0;
+}
+
+.admsidebar-item-rotulo {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.admsidebar-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
+
+.admsidebar-item-ativo,
+.admsidebar-item-ativo:hover {
+  background: #fff;
+  color: #16171d;
+}
+
+.admsidebar-item-desabilitado {
+  cursor: not-allowed;
+  color: #5a5a5a;
+}
+
+.admsidebar-item-desabilitado:hover {
+  background: transparent;
+  color: #5a5a5a;
+}
+
+.admsidebar-badge {
+  flex-shrink: 0;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #8a8a8a;
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 860px) {
+  .admlayout {
+    flex-direction: column;
+  }
+
+  .admsidebar {
+    position: static;
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    overflow-x: auto;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .admsidebar-marca {
+    display: none;
+  }
+
+  .admsidebar-nav {
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  .admsidebar-item {
+    flex-shrink: 0;
+    width: auto;
+    padding: 9px 14px;
+  }
+
+  .admsidebar-item-rotulo {
+    white-space: nowrap;
+  }
+}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAdminAuth } from '../contexto/AdminAuthContext'
+import AdminSidebar from './admsidebar'
 import CadastrosAbas from './cadastrosabas'
 import './admservicos.css'
 
@@ -15,8 +16,6 @@ const SERVICOS_SEED = [
   { id: 'pigmentacao', nome: 'Pigmentação', preco: 40 },
 ]
 
-// TODO: troque essas funções por chamadas reais ao backend (GET/POST/PATCH/DELETE de serviços).
-// Enquanto isso, tudo fica salvo no localStorage e é compartilhado com adm.jsx e novoagendamento.jsx.
 function carregarServicos() {
   try {
     const salvos = localStorage.getItem(CHAVE_SERVICOS)
@@ -40,14 +39,6 @@ const SERVICO_VAZIO = { nome: '', preco: '' }
 
 function formatarPreco(preco) {
   return Number(preco).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
-}
-
-function IconeVoltar() {
-  return (
-    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M19 12H5M11 18l-6-6 6-6" />
-    </svg>
-  )
 }
 
 function IconeMais() {
@@ -177,13 +168,12 @@ function AdminServicos() {
   }
 
   return (
-    <section className="admservicos">
+    <div className="admlayout">
+      <AdminSidebar ativa="/admin/servicos" />
+      <div className="admlayout-main">
+      <section className="admservicos">
       <div className="admservicos-cabecalho">
         <div>
-          <button type="button" className="admservicos-voltar" onClick={() => navigate('/admin')}>
-            <IconeVoltar />
-            Voltar aos agendamentos
-          </button>
           <p className="admservicos-etiqueta">Cadastros</p>
           <h1 className="admservicos-titulo">Serviços</h1>
         </div>
@@ -282,7 +272,9 @@ function AdminServicos() {
           })}
         </div>
       )}
-    </section>
+      </section>
+      </div>
+    </div>
   )
 }
 

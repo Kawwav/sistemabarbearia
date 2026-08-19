@@ -1,20 +1,17 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAdminAuth } from '../contexto/AdminAuthContext'
+import AdminSidebar from './admsidebar'
 import CadastrosAbas from './cadastrosabas'
 import './admfiliais.css'
 
 const CHAVE_FILIAIS = 'barbearia_filiais'
 
-// dados iniciais só pra não começar com a tela vazia; some assim que alguém edita a lista.
-// se a barbearia tiver só uma filial, deixe a lista com 1 item — a etapa some sozinha em novoagendamento.jsx
 const FILIAIS_SEED = [
   { id: 'centro', nome: 'Filial Centro', endereco: 'Rua das Flores, 120', telefone: '' },
   { id: 'zonasul', nome: 'Filial Zona Sul', endereco: 'Av. Brasil, 850', telefone: '' },
 ]
 
-// TODO: troque essas funções por chamadas reais ao backend (GET/POST/PATCH/DELETE de filiais).
-// Enquanto isso, tudo fica salvo no localStorage e é compartilhado com adm.jsx e novoagendamento.jsx.
 function carregarFiliais() {
   try {
     const salvas = localStorage.getItem(CHAVE_FILIAIS)
@@ -30,19 +27,10 @@ function salvarFiliais(lista) {
   try {
     localStorage.setItem(CHAVE_FILIAIS, JSON.stringify(lista))
   } catch {
-    // sem localStorage disponível, segue sem persistir
   }
 }
 
 const FILIAL_VAZIA = { nome: '', endereco: '', telefone: '' }
-
-function IconeVoltar() {
-  return (
-    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M19 12H5M11 18l-6-6 6-6" />
-    </svg>
-  )
-}
 
 function IconeMais() {
   return (
@@ -68,7 +56,6 @@ function IconeLixeira() {
   )
 }
 
-// formulário compartilhado entre "nova filial" e "editar filial"
 function FormFilial({ valor, aoMudar }) {
   return (
     <div className="admfiliais-form">
@@ -182,13 +169,12 @@ function AdminFiliais() {
   }
 
   return (
-    <section className="admfiliais">
+    <div className="admlayout">
+      <AdminSidebar ativa="/admin/filiais" />
+      <div className="admlayout-main">
+      <section className="admfiliais">
       <div className="admfiliais-cabecalho">
         <div>
-          <button type="button" className="admfiliais-voltar" onClick={() => navigate('/admin')}>
-            <IconeVoltar />
-            Voltar aos agendamentos
-          </button>
           <p className="admfiliais-etiqueta">Cadastros</p>
           <h1 className="admfiliais-titulo">Filiais</h1>
         </div>
@@ -291,7 +277,9 @@ function AdminFiliais() {
           })}
         </div>
       )}
-    </section>
+      </section>
+      </div>
+    </div>
   )
 }
 

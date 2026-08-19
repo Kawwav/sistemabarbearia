@@ -40,18 +40,7 @@ function AdminLogin() {
     setErro('')
     setEnviando(true)
     try {
-      // TODO: troque por uma chamada real ao backend, que deve validar as
-      // credenciais no servidor. Nunca confie em checagem de senha só no front-end
-      // (qualquer pessoa consegue ler o código-fonte do navegador).
-      // const resposta = await fetch('/api/admin/login', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ email, senha }),
-      // })
-      // if (!resposta.ok) throw new Error('Credenciais inválidas')
-
       await new Promise((resolve) => setTimeout(resolve, 700))
-
       entrarAdmin({ email })
       navigate('/admin')
     } catch {

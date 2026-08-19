@@ -1,12 +1,11 @@
 import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAdminAuth } from '../contexto/AdminAuthContext'
+import AdminSidebar from './admsidebar'
 import './admclube.css'
 
 const CHAVE_MEMBROS = 'barbearia_membros'
 
-// mesmos planos oferecidos pro cliente em clube.jsx
-// TODO: troque pelos planos e valores reais vindos do backend (mesma lista usada em clube.jsx)
 const PLANOS = [
   { id: 'essencial', nome: 'Essencial', preco: 79 },
   { id: 'completo', nome: 'Completo', preco: 129 },
@@ -34,14 +33,6 @@ function formatarData(data) {
   })
 }
 
-function IconeVoltar() {
-  return (
-    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M19 12H5M11 18l-6-6 6-6" />
-    </svg>
-  )
-}
-
 function AdminClube() {
   const navigate = useNavigate()
   const { admin, sairAdmin } = useAdminAuth()
@@ -53,7 +44,6 @@ function AdminClube() {
     navigate('/admin/login')
   }
 
-  // agrupa os assinantes por plano e calcula a receita recorrente de cada um
   const planosComAssinantes = useMemo(() => {
     return PLANOS.map((plano) => {
       const assinantes = membros
@@ -71,13 +61,12 @@ function AdminClube() {
   const receitaTotal = planosComAssinantes.reduce((total, p) => total + p.receita, 0)
 
   return (
-    <section className="admclube">
+    <div className="admlayout">
+      <AdminSidebar ativa="/admin/clube" />
+      <div className="admlayout-main">
+      <section className="admclube">
       <div className="admclube-cabecalho">
         <div>
-          <button type="button" className="admclube-voltar" onClick={() => navigate('/admin')}>
-            <IconeVoltar />
-            Voltar aos agendamentos
-          </button>
           <p className="admclube-etiqueta">Assinaturas</p>
           <h1 className="admclube-titulo">Clube Falcão</h1>
         </div>
@@ -145,7 +134,9 @@ function AdminClube() {
           ))}
         </div>
       )}
-    </section>
+      </section>
+      </div>
+    </div>
   )
 }
 

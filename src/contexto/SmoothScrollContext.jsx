@@ -15,7 +15,6 @@ export function SmoothScrollProvider({ children }) {
       '(prefers-reduced-motion: reduce)'
     ).matches
 
-    // respeita quem prefere menos animação: deixa o scroll nativo do navegador
     if (prefereReduzirMovimento) return
 
     const instancia = new Lenis({

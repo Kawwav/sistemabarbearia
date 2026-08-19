@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAdminAuth } from '../contexto/AdminAuthContext'
+import AdminSidebar from './admsidebar'
 import CadastrosAbas from './cadastrosabas'
 import './admbarbeiros.css'
 
@@ -16,7 +17,6 @@ const DIAS_SEMANA = [
   { chave: 'sab', label: 'Sábado', abrev: 'Sáb' },
 ]
 
-// jornada padrão: segunda a sábado, 09h às 19h, domingo fechado
 function horarioPadrao() {
   return {
     dom: { ativo: false, inicio: '09:00', fim: '19:00' },
@@ -29,7 +29,6 @@ function horarioPadrao() {
   }
 }
 
-// dados iniciais só pra não começar com a tela vazia; some assim que alguém edita a lista
 const BARBEIROS_SEED = [
   { id: 'joao', nome: 'João Silva', foto: '/barbeiro1.jpg', horarioTrabalho: horarioPadrao() },
   { id: 'pedro', nome: 'Pedro Alves', foto: '/barbeiro2.jpg', horarioTrabalho: horarioPadrao() },
@@ -37,8 +36,6 @@ const BARBEIROS_SEED = [
   { id: 'rafael', nome: 'Rafael Costa', foto: '/barbeiro4.jpg', horarioTrabalho: horarioPadrao() },
 ]
 
-// TODO: troque essas funções por chamadas reais ao backend (GET/POST/PATCH/DELETE de barbeiros).
-// Enquanto isso, tudo fica salvo no localStorage e é compartilhado com adm.jsx e novoagendamento.jsx.
 function carregarBarbeiros() {
   try {
     const salvos = localStorage.getItem(CHAVE_BARBEIROS)
@@ -54,13 +51,11 @@ function salvarBarbeiros(lista) {
   try {
     localStorage.setItem(CHAVE_BARBEIROS, JSON.stringify(lista))
   } catch {
-    // sem localStorage disponível, segue sem persistir
   }
 }
 
 const BARBEIRO_VAZIO = { nome: '', foto: '', horarioTrabalho: horarioPadrao() }
 
-// resume a jornada em uma linha só: dias ativos + horário (ou aviso se variar por dia)
 function resumoHorario(horarioTrabalho) {
   const dias = DIAS_SEMANA.filter((d) => horarioTrabalho?.[d.chave]?.ativo)
   if (dias.length === 0) return 'Sem dias de trabalho definidos'
@@ -73,14 +68,6 @@ function resumoHorario(horarioTrabalho) {
     return `${listaDias} · ${inicio} às ${fim}`
   }
   return `${listaDias} · horários variam por dia`
-}
-
-function IconeVoltar() {
-  return (
-    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M19 12H5M11 18l-6-6 6-6" />
-    </svg>
-  )
 }
 
 function IconeMais() {
@@ -116,7 +103,6 @@ function IconeCamera() {
   )
 }
 
-// formulário compartilhado entre "novo barbeiro" e "editar barbeiro"
 function FormBarbeiro({ valor, aoMudar, idCampo }) {
   function handleFoto(e) {
     const arquivo = e.target.files?.[0]
@@ -275,13 +261,12 @@ function AdminBarbeiros() {
   }
 
   return (
-    <section className="admbarbeiros">
+    <div className="admlayout">
+      <AdminSidebar ativa="/admin/barbeiros" />
+      <div className="admlayout-main">
+      <section className="admbarbeiros">
       <div className="admbarbeiros-cabecalho">
         <div>
-          <button type="button" className="admbarbeiros-voltar" onClick={() => navigate('/admin')}>
-            <IconeVoltar />
-            Voltar aos agendamentos
-          </button>
           <p className="admbarbeiros-etiqueta">Cadastros</p>
           <h1 className="admbarbeiros-titulo">Barbeiros</h1>
         </div>
@@ -389,7 +374,9 @@ function AdminBarbeiros() {
           })}
         </div>
       )}
-    </section>
+      </section>
+      </div>
+    </div>
   )
 }
 

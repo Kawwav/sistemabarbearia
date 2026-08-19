@@ -16,6 +16,8 @@ import AdminServicos from './paginas/admservicos'
 import AdminFiliais from './paginas/admfiliais'
 import AdminClube from './paginas/admclube'
 import AdminClientes from './paginas/admclientes'
+import AdminFinanceiro from './paginas/admfinanceiro'
+import AdminEditarSite from './paginas/admeditarsite'
 import { useAuth } from './contexto/AuthContext'
 import { useAdminAuth } from './contexto/AdminAuthContext'
 
@@ -23,8 +25,6 @@ import { useAdminAuth } from './contexto/AdminAuthContext'
 //git commit -m ""
 //git branch -M main
 //git push -u origin main
-
-
 
 
 function Inicio() {
@@ -141,6 +141,22 @@ function App() {
         element={
           <RotaProtegidaAdmin>
             <AdminClientes />
+          </RotaProtegidaAdmin>
+        }
+      />
+      <Route
+        path="/admin/financeiro"
+        element={
+          <RotaProtegidaAdmin>
+            <AdminFinanceiro />
+          </RotaProtegidaAdmin>
+        }
+      />
+      <Route
+        path="/admin/editar-site"
+        element={
+          <RotaProtegidaAdmin>
+            <AdminEditarSite />
           </RotaProtegidaAdmin>
         }
       />

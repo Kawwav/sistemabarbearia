@@ -194,7 +194,6 @@
   background: rgba(255, 138, 138, 0.12);
 }
 
-/* cartão de formulário: nova filial ou edição inline */
 .admfiliais-cartao-form {
   flex-direction: column;
   align-items: stretch;

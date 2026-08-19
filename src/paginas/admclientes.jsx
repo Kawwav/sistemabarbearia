@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAdminAuth } from '../contexto/AdminAuthContext'
+import AdminSidebar from './admsidebar'
 import './adm.css'
 import './admclientes.css'
 
@@ -12,8 +13,6 @@ const STATUS_ETIQUETA = {
   nao_compareceu: 'Não compareceu',
 }
 
-// lê os mesmos agendamentos usados em Painel > Agendamentos (adm.jsx); é a única fonte
-// de dados de cliente que existe hoje, então a lista de clientes é derivada dela
 function carregarAgendamentos() {
   try {
     const lista = JSON.parse(localStorage.getItem(CHAVE_AGENDAMENTOS) || '[]')
@@ -38,14 +37,6 @@ function iniciais(nome) {
   const primeiro = partes[0][0]
   const ultimo = partes.length > 1 ? partes[partes.length - 1][0] : ''
   return (primeiro + ultimo).toUpperCase()
-}
-
-function IconeVoltar() {
-  return (
-    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M19 12H5M12 19l-7-7 7-7" />
-    </svg>
-  )
 }
 
 function IconeChevron({ aberto }) {
@@ -91,8 +82,6 @@ function AdminClientes() {
   const [busca, setBusca] = useState('')
   const [expandido, setExpandido] = useState(null)
 
-  // agrupa os agendamentos por cliente (usa o e-mail como identidade quando existe,
-  // já que dois clientes podem ter o mesmo nome; sem e-mail, cai pro nome mesmo)
   const clientes = useMemo(() => {
     const mapa = new Map()
 
@@ -106,7 +95,6 @@ function AdminClientes() {
       }
 
       const cliente = mapa.get(chave)
-      // mantém sempre o dado de contato mais recente que o cliente informou
       if (a.email) cliente.email = a.email
       if (a.telefone) cliente.telefone = a.telefone
       if (a.cliente) cliente.nome = a.cliente
@@ -149,17 +137,16 @@ function AdminClientes() {
   }
 
   return (
-    <section className="adm">
+    <div className="admlayout">
+      <AdminSidebar ativa="/admin/clientes" />
+      <div className="admlayout-main">
+      <section className="adm">
       <div className="adm-cabecalho">
         <div>
           <p className="adm-etiqueta">Painel administrativo</p>
           <h1 className="adm-titulo">Clientes</h1>
         </div>
         <div className="adm-cabecalho-direita">
-          <button type="button" className="adm-cadastros" onClick={() => navigate('/admin')}>
-            <IconeVoltar />
-            Agendamentos
-          </button>
           <span className="adm-email">{admin?.email}</span>
           <button type="button" className="adm-sair" onClick={handleSair}>
             Sair
@@ -264,7 +251,9 @@ function AdminClientes() {
           })}
         </div>
       )}
-    </section>
+      </section>
+      </div>
+    </div>
   )
 }
 

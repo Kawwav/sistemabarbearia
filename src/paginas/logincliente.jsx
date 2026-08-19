@@ -49,6 +49,51 @@ function IconeOlho({ aberto }) {
   )
 }
 
+function IconeEmail() {
+  return (
+    <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="4" width="20" height="16" rx="3" />
+      <path d="M3 6.5l9 6.5 9-6.5" />
+    </svg>
+  )
+}
+
+function IconeCadeado() {
+  return (
+    <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="4" y="10.5" width="16" height="10" rx="2.5" />
+      <path d="M7.5 10.5V7a4.5 4.5 0 0 1 9 0v3.5" />
+    </svg>
+  )
+}
+
+function IconeUsuario() {
+  return (
+    <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="8" r="4" />
+      <path d="M4 20c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5" />
+    </svg>
+  )
+}
+
+function IconeId() {
+  return (
+    <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2.5" y="5" width="19" height="14" rx="2.5" />
+      <circle cx="8.5" cy="12" r="2.2" />
+      <path d="M13.5 10h5M13.5 14h3.5" />
+    </svg>
+  )
+}
+
+function IconeMarca() {
+  return (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+      <path d="M13 2 3 14h7l-1 8 11-13h-7l0-7z" />
+    </svg>
+  )
+}
+
 function IconeGoogle() {
   return (
     <svg viewBox="0 0 48 48" width="18" height="18" aria-hidden="true">
@@ -170,6 +215,13 @@ function LoginCliente() {
   return (
     <section className="logincliente">
       <div className="logincliente-cartao">
+        <div className="logincliente-marca">
+          <span className="logincliente-marca-simbolo">
+            <IconeMarca />
+          </span>
+          <span className="logincliente-marca-texto">Agenda</span>
+        </div>
+
         <div className="logincliente-abas" role="tablist">
           <button
             type="button"
@@ -198,19 +250,23 @@ function LoginCliente() {
 
             <label className="logincliente-campo">
               <span>E-mail</span>
-              <input
-                type="email"
-                value={emailLogin}
-                onChange={(e) => setEmailLogin(e.target.value)}
-                placeholder="seuemail@exemplo.com"
-                autoComplete="email"
-              />
+              <div className="logincliente-campo-com-icone">
+                <IconeEmail />
+                <input
+                  type="email"
+                  value={emailLogin}
+                  onChange={(e) => setEmailLogin(e.target.value)}
+                  placeholder="seuemail@exemplo.com"
+                  autoComplete="email"
+                />
+              </div>
               {erros.emailLogin && <small className="logincliente-erro">{erros.emailLogin}</small>}
             </label>
 
             <label className="logincliente-campo">
               <span>Senha</span>
-              <div className="logincliente-campo-senha">
+              <div className="logincliente-campo-com-icone logincliente-campo-senha">
+                <IconeCadeado />
                 <input
                   type={verSenhaLogin ? 'text' : 'password'}
                   value={senhaLogin}
@@ -252,25 +308,31 @@ function LoginCliente() {
 
             <label className="logincliente-campo">
               <span>Nome completo</span>
-              <input
-                type="text"
-                value={nome}
-                onChange={(e) => setNome(e.target.value)}
-                placeholder="Seu nome"
-                autoComplete="name"
-              />
+              <div className="logincliente-campo-com-icone">
+                <IconeUsuario />
+                <input
+                  type="text"
+                  value={nome}
+                  onChange={(e) => setNome(e.target.value)}
+                  placeholder="Seu nome"
+                  autoComplete="name"
+                />
+              </div>
               {erros.nome && <small className="logincliente-erro">{erros.nome}</small>}
             </label>
 
             <label className="logincliente-campo">
               <span>E-mail</span>
-              <input
-                type="email"
-                value={emailRegistro}
-                onChange={(e) => setEmailRegistro(e.target.value)}
-                placeholder="seuemail@exemplo.com"
-                autoComplete="email"
-              />
+              <div className="logincliente-campo-com-icone">
+                <IconeEmail />
+                <input
+                  type="email"
+                  value={emailRegistro}
+                  onChange={(e) => setEmailRegistro(e.target.value)}
+                  placeholder="seuemail@exemplo.com"
+                  autoComplete="email"
+                />
+              </div>
               {erros.emailRegistro && <small className="logincliente-erro">{erros.emailRegistro}</small>}
             </label>
 
@@ -288,21 +350,25 @@ function LoginCliente() {
 
               <label className="logincliente-campo">
                 <span>CPF</span>
-                <input
-                  type="text"
-                  inputMode="numeric"
-                  value={cpf}
-                  onChange={handleCpfChange}
-                  placeholder="000.000.000-00"
-                  maxLength={14}
-                />
+                <div className="logincliente-campo-com-icone">
+                  <IconeId />
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    value={cpf}
+                    onChange={handleCpfChange}
+                    placeholder="000.000.000-00"
+                    maxLength={14}
+                  />
+                </div>
                 {erros.cpf && <small className="logincliente-erro">{erros.cpf}</small>}
               </label>
             </div>
 
             <label className="logincliente-campo">
               <span>Senha</span>
-              <div className="logincliente-campo-senha">
+              <div className="logincliente-campo-com-icone logincliente-campo-senha">
+                <IconeCadeado />
                 <input
                   type={verSenhaRegistro ? 'text' : 'password'}
                   value={senhaRegistro}

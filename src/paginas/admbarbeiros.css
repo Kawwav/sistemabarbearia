@@ -225,7 +225,6 @@
   background: rgba(255, 138, 138, 0.12);
 }
 
-/* cartão de formulário: novo barbeiro ou edição inline */
 .admbarbeiros-cartao-form {
   flex-direction: column;
   align-items: stretch;

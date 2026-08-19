@@ -5,7 +5,6 @@ import './clube.css'
 
 const CHAVE_MEMBROS = 'barbearia_membros'
 
-// TODO: troque pelos planos, valores e direitos reais vindos do backend
 const PLANOS = [
   {
     id: 'essencial',
@@ -51,8 +50,6 @@ const PLANOS = [
   },
 ]
 
-// TODO: troque por chamadas reais ao backend de assinatura/pagamento.
-// A lista completa é usada em admclube.jsx pra montar o relatório de assinantes por plano.
 function carregarMembros() {
   try {
     return JSON.parse(localStorage.getItem(CHAVE_MEMBROS) || '[]')
@@ -65,7 +62,7 @@ function salvarMembros(lista) {
   try {
     localStorage.setItem(CHAVE_MEMBROS, JSON.stringify(lista))
   } catch {
-    // sem localStorage disponível, segue sem persistir
+
   }
 }
 

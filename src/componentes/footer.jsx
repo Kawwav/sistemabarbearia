@@ -73,7 +73,7 @@ function Tesoura3D({ visivel }) {
   const { scene } = useGLTF(modeloTesoura)
   const ref = useRef(null)
 
-  // ponto de partida: canto inferior esquerdo, fora do centro
+  // ponto inicial 3d canto inferior esquerdo
   const posicaoInicial = useRef([-6, -3.5, 0])
   const posicaoAlvo = [0, 0, 0]
 
@@ -100,7 +100,6 @@ return (
 }
 
 function FooterMarquee({ texto }) {
-  // duplica o conteúdo para o loop ficar contínuo
   return (
     <div className="footer-marquee-wrap">
       <div className="footer-marquee-texto">
@@ -116,7 +115,7 @@ function Footer() {
   const navigate = useNavigate()
   const { estaLogado } = useAuth()
 
-  // se já estiver logado, vai direto pro agendamento senão pede login primeiro
+  // se ja estiver logadovai direto pro agendamento senão pede login primeiro
   function irParaAgendamento(e) {
     e.preventDefault()
     navigate(estaLogado ? '/agendar' : '/login')

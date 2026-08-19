@@ -34,7 +34,7 @@
   }
 }
 
-/* topo: espaçador + nome grande centralizado + coluna direita (frase + modelo 3d) */
+
 .footer-topo {
   display: grid;
   grid-template-columns: 1fr auto minmax(240px, 480px);
@@ -45,11 +45,9 @@
 }
 
 .footer-topo-esquerda {
-  /* espaçador vazio que equilibra a coluna da direita, mantendo o nome no centro real */
+
 }
 
-/* tablet: aperta o grid antes de empilhar, evitando que a coluna da direita fique
-   espremida contra o nome grande na faixa entre 721px e 1024px */
 @media (max-width: 1024px) {
   .footer-topo {
     grid-template-columns: 1fr auto minmax(200px, 340px);
@@ -73,14 +71,12 @@
   color: transparent;
 }
 
-/* tablet: cresce menos rápido que no desktop, pra não brigar de espaço com a coluna direita */
 @media (max-width: 1024px) {
   .footer-marca {
     font-size: clamp(48px, 8vw, 140px);
   }
 }
 
-/* coluna direita: frase em cima, modelo 3d preenchendo o espaço logo abaixo */
 .footer-lado-direito {
   display: flex;
   flex-direction: column;
@@ -93,12 +89,10 @@
   position: relative;
   overflow: hidden;
   width: 100%;
-  /* alinha o topo da frase com o topo da letra de "Barbearia" */
   margin-top: 0.3em;
   flex: 0 0 auto;
 }
 
-/* "paredes" com blur nas bordas por onde a frase entra/sai */
 .footer-marquee-wrap::before,
 .footer-marquee-wrap::after {
   content: '';
@@ -170,7 +164,6 @@
   }
 }
 
-/* modelo 3d, logo abaixo da frase, preenchendo o restante da coluna direita */
 .footer-cena {
   position: relative;
   z-index: 0;
@@ -192,7 +185,6 @@
   }
 }
 
-/* linha inferior: localização + data à esquerda, horário + redes/agendamento à direita */
 .footer-baixo {
   position: relative;
   z-index: 1;
