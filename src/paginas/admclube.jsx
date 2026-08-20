@@ -68,7 +68,7 @@ function AdminClube() {
       <div className="admclube-cabecalho">
         <div>
           <p className="admclube-etiqueta">Assinaturas</p>
-          <h1 className="admclube-titulo">Clube Falcão</h1>
+          <h1 className="admclube-titulo">Clube</h1>
         </div>
         <div className="admclube-cabecalho-direita">
           <span className="admclube-email">{admin?.email}</span>
@@ -93,7 +93,7 @@ function AdminClube() {
       </div>
 
       {totalAssinantes === 0 ? (
-        <p className="admclube-vazio">Ninguém assinou o Clube Falcão ainda.</p>
+        <p className="admclube-vazio">Ninguém assinou o Clube ainda.</p>
       ) : (
         <div className="admclube-planos">
           {planosComAssinantes.map((plano) => (

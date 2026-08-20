@@ -26,6 +26,7 @@ function AdminLogin() {
   const [email, setEmail] = useState('')
   const [senha, setSenha] = useState('')
   const [verSenha, setVerSenha] = useState(false)
+  const [lembrar, setLembrar] = useState(false)
   const [erro, setErro] = useState('')
   const [enviando, setEnviando] = useState(false)
 
@@ -52,50 +53,74 @@ function AdminLogin() {
 
   return (
     <section className="adminlogin">
-      <div className="adminlogin-cartao">
-        <span className="adminlogin-etiqueta">Área restrita</span>
-        <h1 className="adminlogin-titulo">Painel administrativo</h1>
-        <p className="adminlogin-subtitulo">Acesso exclusivo para a equipe da barbearia</p>
+      <div className="adminlogin-coluna adminlogin-coluna-formulario">
+        <div className="adminlogin-conteudo">
+          <div className="adminlogin-marca">
 
-        <form className="adminlogin-formulario" onSubmit={handleSubmit} noValidate>
-          <label className="adminlogin-campo">
-            <span>E-mail</span>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="admin@barbearia.com"
-              autoComplete="username"
-            />
-          </label>
+          </div>
 
-          <label className="adminlogin-campo">
-            <span>Senha</span>
-            <div className="adminlogin-campo-senha">
+          <div className="adminlogin-cabecalho">
+            <h1 className="adminlogin-titulo">Bem-vindo de volta</h1>
+            <p className="adminlogin-subtitulo">Digite seu e-mail e senha para acessar o painel administrativo.</p>
+          </div>
+
+          <form className="adminlogin-formulario" onSubmit={handleSubmit} noValidate>
+            <label className="adminlogin-campo">
+              <span>E-mail</span>
               <input
-                type={verSenha ? 'text' : 'password'}
-                value={senha}
-                onChange={(e) => setSenha(e.target.value)}
-                placeholder="••••••••"
-                autoComplete="current-password"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="admin@barbearia.com"
+                autoComplete="username"
               />
-              <button
-                type="button"
-                className="adminlogin-alternar-senha"
-                onClick={() => setVerSenha((v) => !v)}
-                aria-label={verSenha ? 'Ocultar senha' : 'Mostrar senha'}
-              >
-                <IconeOlho aberto={verSenha} />
-              </button>
+            </label>
+
+            <label className="adminlogin-campo">
+              <span>Senha</span>
+              <div className="adminlogin-campo-senha">
+                <input
+                  type={verSenha ? 'text' : 'password'}
+                  value={senha}
+                  onChange={(e) => setSenha(e.target.value)}
+                  placeholder="••••••••"
+                  autoComplete="current-password"
+                />
+                <button
+                  type="button"
+                  className="adminlogin-alternar-senha"
+                  onClick={() => setVerSenha((v) => !v)}
+                  aria-label={verSenha ? 'Ocultar senha' : 'Mostrar senha'}
+                >
+                  <IconeOlho aberto={verSenha} />
+                </button>
+              </div>
+            </label>
+
+            <div className="adminlogin-opcoes">
+              <label className="adminlogin-lembrar">
+                <input
+                  type="checkbox"
+                  checked={lembrar}
+                  onChange={(e) => setLembrar(e.target.checked)}
+                />
+                <span>Lembrar-me</span>
+              </label>
             </div>
-          </label>
 
-          {erro && <small className="adminlogin-erro">{erro}</small>}
+            {erro && <small className="adminlogin-erro">{erro}</small>}
 
-          <button type="submit" className="adminlogin-botao" disabled={enviando}>
-            {enviando ? 'Entrando...' : 'Entrar'}
-          </button>
-        </form>
+            <button type="submit" className="adminlogin-botao" disabled={enviando}>
+              {enviando ? 'Entrando...' : 'Entrar'}
+            </button>
+          </form>
+        </div>
+
+        <p className="adminlogin-copyright">Copyright © {new Date().getFullYear()} Barbearia LTDA.</p>
+      </div>
+
+      <div className="adminlogin-coluna adminlogin-coluna-imagem">
+        <img src={`${import.meta.env.BASE_URL}1.png`} alt="Painel administrativo" className="adminlogin-imagem" />
       </div>
     </section>
   )
